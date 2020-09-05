@@ -194,7 +194,7 @@ def human_timedelta(dt, *, source=None):
         suffix = ""
     else:
         delta = relativedelta(now, dt)
-        suffix = " hace"
+        suffix = ""
 
     if delta.microseconds and delta.seconds:
         delta = delta + relativedelta(seconds=+1)
