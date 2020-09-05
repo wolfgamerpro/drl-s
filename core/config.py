@@ -56,7 +56,7 @@ class ConfigManager:
         "thread_close_footer": "Responder creara un nuevo ticket",
         "thread_close_title": "Ticket cerrado",
         "thread_close_response": "{closer.mention} ha cerrado este ticket.",
-        "thread_self_close_response": "Has cerrado este ticket.",
+        "thread_self_close_response": "Cerraron este ticket.",
         "thread_move_notify": False,
         "thread_move_response": "Este ticket se ha movido.",
         "disabled_new_thread_title": "No entregado",
