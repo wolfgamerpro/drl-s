@@ -40,7 +40,7 @@ class ConfigManager:
         "reply_without_command": False,
         "anon_reply_without_command": False,
         # logging
-        "log_channel_id": 567585603437461515,
+        "log_channel_id": 751908129297399820,
         # threads
         "sent_emoji": "✅",
         "blocked_emoji": "🚫",
