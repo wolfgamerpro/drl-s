@@ -53,7 +53,7 @@ class HumanTime:
         now = datetime.utcnow()
         dt, status = self.calendar.parseDT(argument, sourceTime=now)
         if not status.hasDateOrTime:
-            raise BadArgument('Invalid time provided, try e.g. "tomorrow" or "3 days".')
+            raise BadArgument('Se proporcionó un tiempo no válido, intente ej. mañana o 3 días.')
 
         if not status.hasTime:
             # replace it with the current time
@@ -81,11 +81,11 @@ class FutureTime(Time):
         super().__init__(argument)
 
         if self._past:
-            raise BadArgument("The time is in the past.")
+            raise BadArgument("El tiempo esta en pasado.")
 
 
 class UserFriendlyTimeSync(Converter):
-    """That way quotes aren't absolutely necessary."""
+    """De esa manera, las citas no son absolutamente necesarias."""
 
     def __init__(self):
         self.raw: str = None
@@ -95,7 +95,7 @@ class UserFriendlyTimeSync(Converter):
 
     def check_constraints(self, now, remaining):
         if self.dt < now:
-            raise BadArgument("This time is in the past.")
+            raise BadArgument("Este tiempo es el pasado.")
 
         self.arg = remaining
         return self
@@ -141,9 +141,9 @@ class UserFriendlyTimeSync(Converter):
 
             if begin not in (0, 1) and end != len(argument):
                 raise BadArgument(
-                    "Time is either in an inappropriate location, which must "
-                    "be either at the end or beginning of your input, or I "
-                    "just flat out did not understand what you meant. Sorry."
+                    "El tiempo está en un lugar incorrecto, debe estar"
+                    "al final o al comienzo de su ticket, o yo simplemente"
+                    "no entendí lo que querías decir. Lo siento."
                 )
 
             if not status.hasTime:
@@ -165,10 +165,10 @@ class UserFriendlyTimeSync(Converter):
                 if begin == 1:
                     # check if it's quoted:
                     if argument[0] != '"':
-                        raise BadArgument("Expected quote before time input...")
+                        raise BadArgument("Cotización prevista antes de la entrada de tiempo...")
 
                     if not (end < len(argument) and argument[end] == '"'):
-                        raise BadArgument("If the time is quoted, you must unquote it.")
+                        raise BadArgument("Si se cita la hora, debe quitarla.")
 
                     remaining = argument[end + 1 :].lstrip(" ,.!")
                 else:
@@ -178,7 +178,7 @@ class UserFriendlyTimeSync(Converter):
 
             return self.check_constraints(self.now, remaining)
         except Exception:
-            logger.exception("Something went wrong while parsing the time.")
+            logger.exception("Algo salió mal al analizar la hora.")
             raise
 
 
@@ -194,12 +194,12 @@ def human_timedelta(dt, *, source=None):
         suffix = ""
     else:
         delta = relativedelta(now, dt)
-        suffix = " ago"
+        suffix = " hace"
 
     if delta.microseconds and delta.seconds:
         delta = delta + relativedelta(seconds=+1)
 
-    attrs = ["years", "months", "days", "hours", "minutes", "seconds"]
+    attrs = ["años", "meses", "días", "horas", "minutos", "segundos"]
 
     output = []
     for attr in attrs:
