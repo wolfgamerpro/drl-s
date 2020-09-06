@@ -22,7 +22,7 @@ from core.utils import *
 logger = getLogger(__name__)
 
 
-class Modmail(commands.Cog):
+class Soporte(commands.Cog):
     """Comandos directamente relacionados con la funcionalidad de Soporte."""
 
     def __init__(self, bot):
