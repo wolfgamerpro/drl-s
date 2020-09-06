@@ -224,7 +224,7 @@ class ModmailHelpCommand(commands.HelpCommand):
         await self.get_destination().send(embed=embed)
 
 
-class Utility(commands.Cog):
+class Utilidades(commands.Cog):
     """Comandos generales que proporcionan utilidad."""
 
     def __init__(self, bot):
