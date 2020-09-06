@@ -524,20 +524,20 @@
   },
   "log_url": {
     "default": "https://example.com/",
-    "description": "The base log viewer URL link, leave this as-is to not configure a log viewer.",
+    "description": "El enlace de la URL del registro, déjelo como está para no establecer un registro.",
     "examples": [
     ],
     "notes": [
-      "This configuration can only to be set through `.env` file or environment (config) variables."
+      "Esta configuración solo se puede establecer mediante el archivo `.env` o variables de entorno (config)."
     ]
   },
   "log_url_prefix": {
     "default": "`/logs`",
-    "description": "The path to your log viewer extending from your `LOG_URL`, set this to `/` to specify no extra path to the log viewer.",
+    "description": "La ruta del registro que se extiende desde su `LOG_URL`, establecer esto en `/` para no especificar una ruta adicional al registro.",
     "examples": [
     ],
     "notes": [
-      "This configuration can only to be set through `.env` file or environment (config) variables."
+      "Esta configuración solo se puede establecer mediante el archivo `.env` o variables de entorno (config)."
     ]
   },
   "mongo_uri": {
