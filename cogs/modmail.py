@@ -539,7 +539,7 @@ class Modmail(commands.Cog):
             embed = discord.Embed(color=self.bot.main_color, timestamp=created_at)
             embed.set_author(name=f"{title} - {username}", icon_url=avatar_url, url=log_url)
             embed.url = log_url
-            embed.add_field(name="Creado", value=duration(created_at, now=datetime.utcnow()))
+            embed.add_field(name="Creado hace", value=duration(created_at, now=datetime.utcnow()))
             closer = entry.get("closer")
             if closer is None:
                 closer_msg = "Unknown"
@@ -548,7 +548,7 @@ class Modmail(commands.Cog):
             embed.add_field(name="Cerrado por", value=closer_msg)
 
             if entry["recipient"]["id"] != entry["creator"]["id"]:
-                embed.add_field(name="Created by", value=f"<@{entry['creator']['id']}>")
+                embed.add_field(name="Creado por", value=f"<@{entry['creator']['id']}>")
 
             embed.add_field(name="Vista previa", value=format_preview(entry["messages"]), inline=False)
 
@@ -565,7 +565,7 @@ class Modmail(commands.Cog):
 
     @commands.group(invoke_without_command=True)
     @checks.has_permissions(PermissionLevel.SUPPORTER)
-    async def logs(self, ctx, *, user: User = None):
+    async def logs(self, ctx, *, Usuario: User = None):
         """
         Obtener registros de tickets anteriores de un miembro.
         Deje `user` en blanco cuando este comando se utilice dentro de un
@@ -602,7 +602,7 @@ class Modmail(commands.Cog):
 
     @logs.command(name="closed-by", aliases=["closeby"])
     @checks.has_permissions(PermissionLevel.SUPPORTER)
-    async def logs_closed_by(self, ctx, *, user: User = None):
+    async def logs_closed_by(self, ctx, *, Usuario: User = None):
         """
         Obtiene todos los registros cerrados por el usuario especificado.
         Si no se proporciona el `user`, el usuario será la persona que envió este comando.
@@ -650,7 +650,7 @@ class Modmail(commands.Cog):
 
     @logs.command(name="responded")
     @checks.has_permissions(PermissionLevel.SUPPORTER)
-    async def logs_responded(self, ctx, *, user: User = None):
+    async def logs_responded(self, ctx, *, Usuario: User = None):
         """
         Obtenga todos los registros donde el usuario especificado haya respondido al menos una vez.
         Si no se proporciona el `user`, el usuario será la persona que envió este comando.
@@ -674,7 +674,7 @@ class Modmail(commands.Cog):
 
     @logs.command(name="search", aliases=["find"])
     @checks.has_permissions(PermissionLevel.SUPPORTER)
-    async def logs_search(self, ctx, límite: Optional[int] = None, *, query):
+    async def logs_search(self, ctx, límite: Optional[int] = None, *, busqueda):
         """
         Recupera todos los registros que contienen mensajes especificados.
         Proporcione un "límite" para especificar el número máximo de registros que el bot debe encontrar.
@@ -682,7 +682,7 @@ class Modmail(commands.Cog):
 
         await ctx.trigger_typing()
 
-        entries = await self.bot.api.search_by_text(query, limit)
+        entries = await self.bot.api.search_by_text(busqueda, límite)
 
         embeds = self.format_log_embeds(entries, avatar_url=self.bot.guild.icon_url)
 
@@ -876,7 +876,7 @@ class Modmail(commands.Cog):
     @blocked.command(name="whitelist")
     @checks.has_permissions(PermissionLevel.MODERATOR)
     @trigger_typing
-    async def blocked_whitelist(self, ctx, *, user: User = None):
+    async def blocked_whitelist(self, ctx, *, Usuario: User = None):
         """
         Whitelist or un-whitelist a user from getting blocked.
         Useful for preventing users from getting blocked by account_age/guild_age restrictions.
@@ -893,7 +893,7 @@ class Modmail(commands.Cog):
 
         if str(user.id) in self.bot.blocked_whitelisted_users:
             embed = discord.Embed(
-                title="Success",
+                title="Éxito",
                 description=f"{mention} is no longer whitelisted.",
                 color=self.bot.main_color,
             )
@@ -913,14 +913,14 @@ class Modmail(commands.Cog):
             # Show an extended message stating the original internal message
             reason = msg[16:].strip().rstrip(".")
             embed = discord.Embed(
-                title="Success",
+                title="Éxito",
                 description=f"{mention} was previously blocked internally for "
                 f'"{reason}". {mention} is now whitelisted.',
                 color=self.bot.main_color,
             )
         else:
             embed = discord.Embed(
-                title="Success",
+                title="Éxito",
                 color=self.bot.main_color,
                 description=f"{mention} is now whitelisted.",
             )
@@ -978,14 +978,14 @@ class Modmail(commands.Cog):
         if str(user.id) in self.bot.blocked_users and msg:
             old_reason = msg.strip().rstrip(".")
             embed = discord.Embed(
-                title="Success",
+                title="Éxito",
                 description=f"{mention} was previously blocked {old_reason}.\n"
                 f"{mention} is now blocked {reason}",
                 color=self.bot.main_color,
             )
         else:
             embed = discord.Embed(
-                title="Success",
+                title="Éxito",
                 color=self.bot.main_color,
                 description=f"{mention} is now blocked {reason}",
             )
@@ -997,12 +997,12 @@ class Modmail(commands.Cog):
     @commands.command()
     @checks.has_permissions(PermissionLevel.MODERATOR)
     @trigger_typing
-    async def unblock(self, ctx, *, user: User = None):
+    async def unblock(self, ctx, *, Usuario: User = None):
         """
-        Unblock a user from using Modmail.
-        Leave `user` blank when this command is used within a
-        thread channel to unblock the current recipient.
-        `user` may be a user ID, mention, or name.
+        Desbloquear a un usuario para que no use RequiemSupport.
+        Deje `Usuario` en blanco cuando este comando se utilice dentro de un
+        canal de ticket para desbloquear el destinatario actual.
+        `usuario` puede ser el ID de usuario, una mención o un nombre.
         """
 
         if user is None:
@@ -1019,30 +1019,30 @@ class Modmail(commands.Cog):
             msg = self.bot.blocked_users.pop(str(user.id)) or ""
             await self.bot.config.update()
 
-            if msg.startswith("System Message: "):
+            if msg.startswith("Mensaje del sistema: "):
                 # If the user is blocked internally (for example: below minimum account age)
                 # Show an extended message stating the original internal message
-                reason = msg[16:].strip().rstrip(".") or "no reason"
+                reason = msg[16:].strip().rstrip(".") or "Sin razón"
                 embed = discord.Embed(
-                    title="Success",
-                    description=f"{mention} was previously blocked internally {reason}.\n"
-                    f"{mention} is no longer blocked.",
+                    title="Éxito",
+                    description=f"{mention} fue previamente bloqueado internamente {reason}.\n"
+                    f"{mention} ya no está bloqueado.",
                     color=self.bot.main_color,
                 )
                 embed.set_footer(
-                    text="However, if the original system block reason still applies, "
-                    f"{name} will be automatically blocked again. "
-                    f'Use "{self.bot.prefix}blocked whitelist {user.id}" to whitelist the user.'
+                    text="Sin embargo, si el motivo del bloqueo del sistema original aún se aplica, "
+                    f"{name} se bloqueará automáticamente de nuevo. "
+                    f'Usa "{self.bot.prefix}blocked whitelist {user.id}" para incluir al usuario en la lista blanca.'
                 )
             else:
                 embed = discord.Embed(
-                    title="Success",
+                    title="Éxito",
                     color=self.bot.main_color,
-                    description=f"{mention} is no longer blocked.",
+                    description=f"{mention} ya no está bloqueado.",
                 )
         else:
             embed = discord.Embed(
-                title="Error", description=f"{mention} is not blocked.", color=self.bot.error_color
+                title="Error", description=f"{mention} no está bloqueado.", color=self.bot.error_color
             )
 
         return await ctx.send(embed=embed)
@@ -1052,10 +1052,10 @@ class Modmail(commands.Cog):
     @checks.thread_only()
     async def delete(self, ctx, message_id: int = None):
         """
-        Delete a message that was sent using the reply command or a note.
-        Deletes the previous message, unless a message ID is provided,
-        which in that case, deletes the message with that message ID.
-        Notes can only be deleted when a note ID is provided.
+        Elimine un mensaje que se envió mediante el comando de respuesta o una nota.
+        Elimina el mensaje anterior, a menos que se proporcione un ID de mensaje,
+        que en ese caso, elimina el mensaje con ese ID de mensaje.
+        Las notas solo se pueden eliminar cuando se proporciona un ID de nota.
         """
         thread = ctx.thread
 
@@ -1065,8 +1065,8 @@ class Modmail(commands.Cog):
             logger.warning("Failed to delete message: %s.", e)
             return await ctx.send(
                 embed=discord.Embed(
-                    title="Failed",
-                    description="Cannot find a message to delete.",
+                    title="Fallido",
+                    description="No se puede encontrar un mensaje para eliminar.",
                     color=self.bot.error_color,
                 )
             )
@@ -1078,7 +1078,7 @@ class Modmail(commands.Cog):
     @checks.has_permissions(PermissionLevel.SUPPORTER)
     async def repair(self, ctx):
         """
-        Repair a thread broken by Discord.
+        Repara un ticket roto por Discord.
         """
         sent_emoji, blocked_emoji = await self.bot.retrieve_emoji()
 
@@ -1098,7 +1098,7 @@ class Modmail(commands.Cog):
         )
         if thread is not None:
             logger.debug("Found thread with tempered ID.")
-            await ctx.channel.edit(reason="Fix broken Modmail thread", topic=f"User ID: {user_id}")
+            await ctx.channel.edit(reason="Reparar ticket de RequiemSupport roto", topic=f"ID de Usuario: {user_id}")
             return await self.bot.add_reaction(ctx.message, sent_emoji)
 
         # find genesis message to retrieve User ID
@@ -1126,7 +1126,7 @@ class Modmail(commands.Cog):
                         "Setting current channel's topic to User ID and created new thread."
                     )
                     await ctx.channel.edit(
-                        reason="Fix broken Modmail thread", topic=f"User ID: {user_id}"
+                        reason="Reparar ticket de RequiemSupport roto", topic=f"ID de Usuario: {user_id}"
                     )
                     return await self.bot.add_reaction(ctx.message, sent_emoji)
 
@@ -1154,13 +1154,13 @@ class Modmail(commands.Cog):
                     thread = self.bot.threads.cache[user.id]
                     if thread.channel:
                         embed = discord.Embed(
-                            title="Delete Channel",
-                            description="This thread channel is no longer in use. "
-                            f"All messages will be directed to {ctx.channel.mention} instead.",
+                            title="Eliminar Canal",
+                            description="Este canal de ticket ya no está en uso."
+                            f"Todos los mensajes se dirigirán a {ctx.channel.mention}.",
                             color=self.bot.error_color,
                         )
                         embed.set_footer(
-                            text='Please manually delete this channel, do not use "{prefix}close".'
+                            text='Elimine manualmente este canal, no utilice "{prefix}close".'
                         )
                         try:
                             await thread.channel.send(embed=embed)
@@ -1177,24 +1177,24 @@ class Modmail(commands.Cog):
                 thread.ready = True
                 logger.info("Setting current channel's topic to User ID and created new thread.")
                 await ctx.channel.edit(
-                    reason="Fix broken Modmail thread", name=name, topic=f"User ID: {user.id}"
+                    reason="Reparar ticket de RequiemSupport roto", name=name, topic=f"ID de Usuario: {user.id}"
                 )
                 return await self.bot.add_reaction(ctx.message, sent_emoji)
 
             elif len(users) >= 2:
-                logger.info("Multiple users with the same name and discriminator.")
+                logger.info("Múltiples usuarios con el mismo nombre y discriminador.")
         return await self.bot.add_reaction(ctx.message, blocked_emoji)
 
     @commands.command()
     @checks.has_permissions(PermissionLevel.ADMINISTRATOR)
     async def enable(self, ctx):
         """
-        Re-enables DM functionalities of Modmail.
-        Undo's the `{prefix}disable` command, all DM will be relayed after running this command.
+        Vuelve a habilitar las funciones de DM de RequiemSupport.
+        Deshace el comando `{prefix}disable`, todos los tickets se transmitirán después de ejecutar este comando.
         """
         embed = discord.Embed(
-            title="Success",
-            description="Modmail will now accept all DM messages.",
+            title="Éxito",
+            description="RequiemSupport ahora aceptará todos los mensajes DM.",
             color=self.bot.main_color,
         )
 
@@ -1208,10 +1208,10 @@ class Modmail(commands.Cog):
     @checks.has_permissions(PermissionLevel.ADMINISTRATOR)
     async def disable(self, ctx):
         """
-        Disable partial or full Modmail thread functions.
-        To stop all new threads from being created, do `{prefix}disable new`.
-        To stop all existing threads from DMing Modmail, do `{prefix}disable all`.
-        To check if the DM function for Modmail is enabled, do `{prefix}isenable`.
+        Deshabilite las funciones de subprocesos de RequiemSupport parciales o totales.
+        Para evitar que se creen todos los tickets nuevos, haga `{prefix}disable new`.
+        Para detener todos los tickets existentes de RequiemSupport, haga `{prefix}disable all`.
+        Para comprobar si la función DM para RequiemSupport está habilitada, haga `{prefix}isenable`.
         """
         await ctx.send_help(ctx.command)
 
@@ -1219,12 +1219,12 @@ class Modmail(commands.Cog):
     @checks.has_permissions(PermissionLevel.ADMINISTRATOR)
     async def disable_new(self, ctx):
         """
-        Stop accepting new Modmail threads.
-        No new threads can be created through DM.
+        Deje de aceptar nuevos tickets de RequiemSupport.
+        No se pueden crear nuevos tickets a través de DM.
         """
         embed = discord.Embed(
-            title="Success",
-            description="Modmail will not create any new threads.",
+            title="Éxito",
+            description="RequiemSupport no creará nuevos tickets.",
             color=self.bot.main_color,
         )
         if self.bot.config["dm_disabled"] < 1:
@@ -1237,12 +1237,12 @@ class Modmail(commands.Cog):
     @checks.has_permissions(PermissionLevel.ADMINISTRATOR)
     async def disable_all(self, ctx):
         """
-        Disables all DM functionalities of Modmail.
-        No new threads can be created through DM nor no further DM messages will be relayed.
+        Desactiva todas las funciones de DM de RequiemSupport.
+        No se pueden crear nuevos tickets a través de DM ni se retransmitirán más mensajes DM.
         """
         embed = discord.Embed(
-            title="Success",
-            description="Modmail will not accept any DM messages.",
+            title="Éxito",
+            description="RequiemSupport no aceptará ningún mensaje DM.",
             color=self.bot.main_color,
         )
 
@@ -1256,25 +1256,25 @@ class Modmail(commands.Cog):
     @checks.has_permissions(PermissionLevel.ADMINISTRATOR)
     async def isenable(self, ctx):
         """
-        Check if the DM functionalities of Modmail is enabled.
+        Compruebe si las funcionalidades DM de RequiemSupport están habilitadas.
         """
 
         if self.bot.config["dm_disabled"] == 1:
             embed = discord.Embed(
-                title="New Threads Disabled",
-                description="Modmail is not creating new threads.",
+                title="Nuevos tickets deshabilitados",
+                description="RequiemSupport no está creando nuevos tickets.",
                 color=self.bot.error_color,
             )
         elif self.bot.config["dm_disabled"] == 2:
             embed = discord.Embed(
-                title="All DM Disabled",
-                description="Modmail is not accepting any DM messages for new and existing threads.",
+                title="Todo DM Desactivado",
+                description="RequiemSupport no acepta mensajes DM para tickets nuevos y existentes.",
                 color=self.bot.error_color,
             )
         else:
             embed = discord.Embed(
-                title="Enabled",
-                description="Modmail now is accepting all DM messages.",
+                title="Habilitado",
+                description="RequiemSupport ahora acepta todos los mensajes DM.",
                 color=self.bot.main_color,
             )
 
