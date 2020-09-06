@@ -1582,7 +1582,7 @@ class Utilidades(commands.Cog):
     @oauth.command(name="show", aliases=["get", "list", "view"])
     @checks.has_permissions(PermissionLevel.OWNER)
     async def oauth_show(self, ctx):
-        """Shows a list of users and roles that are whitelisted to view logs."""
+        """Muestra una lista de usuarios y roles que están incluidos en la lista blanca para ver registros."""
         whitelisted = self.bot.config["oauth_whitelist"]
 
         users = []
