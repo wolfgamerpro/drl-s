@@ -17,15 +17,15 @@ except ImportError:
 
 
 class PermissionLevel(IntEnum):
-    PROPIETARIO = 5
-    ADMINISTRADOR = 4
+    OWNER = 5
+    ADMINISTRATOR = 4
     ADMIN = 4
-    MODERADOR = 3
+    MODERATOR = 3
     MOD = 3
-    SOPORTE = 2
-    RESPONDEDOR = 2
+    SUPPORTER = 2
+    RESPONDER = 2
     REGULAR = 1
-    INVALIDO = -1
+    INVALID = -1
 
 
 class InvalidConfigError(commands.BadArgument):
