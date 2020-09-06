@@ -1183,16 +1183,6 @@ class Soporte(commands.Cog):
             elif len(users) >= 2:
                 logger.info("Múltiples usuarios con el mismo nombre y discriminador.")
         return await self.bot.add_reaction(ctx.message, blocked_emoji)
-
-    @commands.command()
-    @checks.has_permissions(PermissionLevel.ADMINISTRATOR)
-    async def leave(self, ctx, *, guild_name):
-        guild = discord.utils.get(self.bot.guilds, name=guild_name)
-        if guild is None:
-            await ctx.send("I don't recognize that guild.")
-            return
-        await self.bot.leave_guild(guild)
-        await ctx.send(f":ok_hand: Left guild: {guild.name} ({guild.id})")
                                 
     @commands.command()
     @checks.has_permissions(PermissionLevel.ADMINISTRATOR)
