@@ -107,7 +107,7 @@ class Modmail(commands.Cog):
 
     @commands.group(aliases=["snippets"], invoke_without_command=True)
     @checks.has_permissions(PermissionLevel.SUPPORTER)
-    async def snippet(self, ctx, *, name: str.lower = None):
+    async def snippet(self, ctx, *, nombre: str.lower = None):
         """
         Cree mensajes predefinidos para usar en tickets.
 
@@ -161,7 +161,7 @@ class Modmail(commands.Cog):
 
     @snippet.command(name="raw")
     @checks.has_permissions(PermissionLevel.SUPPORTER)
-    async def snippet_raw(self, ctx, *, name: str.lower):
+    async def snippet_raw(self, ctx, *, nombre: str.lower):
         """
         Ver el contenido sin procesar de un snippet.
         """
@@ -180,7 +180,7 @@ class Modmail(commands.Cog):
 
     @snippet.command(name="add")
     @checks.has_permissions(PermissionLevel.SUPPORTER)
-    async def snippet_add(self, ctx, name: str.lower, *, value: commands.clean_content):
+    async def snippet_add(self, ctx, nombre: str.lower, *, valor: commands.clean_content):
         """
         Agrega un snippet.
 
@@ -230,7 +230,7 @@ class Modmail(commands.Cog):
 
     @snippet.command(name="remove", aliases=["del", "delete"])
     @checks.has_permissions(PermissionLevel.SUPPORTER)
-    async def snippet_remove(self, ctx, *, name: str.lower):
+    async def snippet_remove(self, ctx, *, nombre: str.lower):
         """Remove a snippet."""
 
         if name in self.bot.snippets:
@@ -247,7 +247,7 @@ class Modmail(commands.Cog):
 
     @snippet.command(name="edit")
     @checks.has_permissions(PermissionLevel.SUPPORTER)
-    async def snippet_edit(self, ctx, name: str.lower, *, value):
+    async def snippet_edit(self, ctx, nombre: str.lower, *, valor):
         """
         Edite un snippet.
 
@@ -271,7 +271,7 @@ class Modmail(commands.Cog):
     @commands.command()
     @checks.has_permissions(PermissionLevel.MODERATOR)
     @checks.thread_only()
-    async def move(self, ctx, category: discord.CategoryChannel, *, specifics: str = None):
+    async def move(self, ctx, categoría: discord.CategoryChannel, *, detalles: str = None):
         """
         Mover un ticket a otra categoría.
 
@@ -320,7 +320,7 @@ class Modmail(commands.Cog):
     @commands.command(usage="[after] [close message]")
     @checks.has_permissions(PermissionLevel.SUPPORTER)
     @checks.thread_only()
-    async def close(self, ctx, *, after: UserFriendlyTime = None):
+    async def close(self, ctx, *, tiempo: UserFriendlyTime = None):
         """
         Cierra el ticket actual.
 
@@ -384,15 +384,15 @@ class Modmail(commands.Cog):
     @checks.has_permissions(PermissionLevel.SUPPORTER)
     @checks.thread_only()
     async def notify(
-        self, ctx, *, user_or_role: Union[discord.Role, User, str.lower, None] = None
+        self, ctx, *, Usuario_O_Rol: Union[discord.Role, Usuario, str.lower, None] = None
     ):
         """
         Notificar a un usuario o rol cuando se reciba el siguiente ticket.
 
-        Una vez que se recibe un ticket, se hará ping una vez a `user_or_role`.
+        Una vez que se recibe un ticket, se hará ping una vez a `Usuario_O_Rol`.
 
-        Deje `user_or_role` vacío para notificarse.
-        `user_or_role` puede ser una ID de usuario/rol, mención, nombre, "everyone", o "here".
+        Deje `Usuario_O_Rol` vacío para notificarse.
+        `Usuario_O_Rol` puede ser una ID de usuario/rol, mención, nombre, "everyone", o "here".
         """
         mention = self.parse_user_or_role(ctx, user_or_role)
         if mention is None:
@@ -423,12 +423,12 @@ class Modmail(commands.Cog):
     @checks.has_permissions(PermissionLevel.SUPPORTER)
     @checks.thread_only()
     async def unnotify(
-        self, ctx, *, user_or_role: Union[discord.Role, User, str.lower, None] = None
+        self, ctx, *, Usuario_O_Rol: Union[discord.Role, User, str.lower, None] = None
     ):
         """
         Anule la notificación a un usuario, rol o usted mismo de un ticket.
 
-        Deje `user_or_role` vacío para anular la notificación.
+        Deje `Usuario_O_Rol` vacío para anular la notificación.
         `user_or_role` puede ser una ID de usuario/rol, mención, nombre, "everyone", o "here".
         """
         mention = self.parse_user_or_role(ctx, user_or_role)
@@ -459,15 +459,15 @@ class Modmail(commands.Cog):
     @checks.has_permissions(PermissionLevel.SUPPORTER)
     @checks.thread_only()
     async def subscribe(
-        self, ctx, *, user_or_role: Union[discord.Role, User, str.lower, None] = None
+        self, ctx, *, Usuario_O_Rol: Union[discord.Role, User, str.lower, None] = None
     ):
         """
         Notifique a un usuario, rol o usted mismo por cada ticket.
         
         Se le hará ping por cada ticket hasta que cancele la suscripción.
 
-        Deje `user_or_role` vacío para notificarse.
-        `user_or_role` puede ser una ID de usuario/rol, mención, nombre, "everyone", o "here".
+        Deje `Usuario_O_Rol` vacío para notificarse.
+        `Usuario_O_Rol` puede ser una ID de usuario/rol, mención, nombre, "everyone", o "here".
         """
         mention = self.parse_user_or_role(ctx, user_or_role)
         if mention is None:
@@ -498,13 +498,13 @@ class Modmail(commands.Cog):
     @checks.has_permissions(PermissionLevel.SUPPORTER)
     @checks.thread_only()
     async def unsubscribe(
-        self, ctx, *, user_or_role: Union[discord.Role, User, str.lower, None] = None
+        self, ctx, *, Usuario_O_Rol: Union[discord.Role, User, str.lower, None] = None
     ):
         """
-        Dar de baja a un usuario, rol o usted mismo de un ticket.
+        Cancelar la suscripción de un usuario, rol o usted mismo de un ticket.
 
-        Deje `user_or_role` vacío para anular la notificación.
-        `user_or_role` puede ser una ID de usuario/rol, mención, nombre, "everyone", o "here".
+        Deje `Usuario_O_Rol` vacío para anular la notificación.
+        `Usuario_O_Rol` puede ser una ID de usuario/rol, mención, nombre, "everyone", o "here".
         """
         mention = self.parse_user_or_role(ctx, user_or_role)
         if mention is None:
