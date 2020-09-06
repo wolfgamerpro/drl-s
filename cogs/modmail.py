@@ -23,7 +23,7 @@ logger = getLogger(__name__)
 
 
 class Modmail(commands.Cog):
-    """Commands directly related to Modmail functionality."""
+    """Comandos directamente relacionados con la funcionalidad de Soporte."""
 
     def __init__(self, bot):
         self.bot = bot
@@ -33,25 +33,25 @@ class Modmail(commands.Cog):
     @checks.has_permissions(PermissionLevel.OWNER)
     async def setup(self, ctx):
         """
-        Sets up a server for Modmail.
+        Configura un servidor para RequiemSupport.
 
-        You only need to run this command
-        once after configuring Modmail.
+        Solo necesitas ejecutar este comando
+        una vez después de configurar RequiemSupport.
         """
 
         if ctx.guild != self.bot.modmail_guild:
             return await ctx.send(
-                f"You can only setup in the Modmail guild: {self.bot.modmail_guild}."
+                f"Solo puedes configurar en el servidor de RequiemSupport: {self.bot.modmail_guild}."
             )
 
         if self.bot.main_category is not None:
-            logger.debug("Can't re-setup server, main_category is found.")
-            return await ctx.send(f"{self.bot.modmail_guild} is already set up.")
+            logger.debug("No se puede volver a configurar el servidor, se encontró main_category")
+            return await ctx.send(f"{self.bot.modmail_guild} ya está configurado.")
 
         if self.bot.modmail_guild is None:
             embed = discord.Embed(
                 title="Error",
-                description="Modmail functioning guild not found.",
+                description="No se encontró el servidor en funcionamiento de RequiemSupport.",
                 color=self.bot.error_color,
             )
             return await ctx.send(embed=embed)
@@ -74,48 +74,30 @@ class Modmail(commands.Cog):
                     if key is None:
                         key = self.bot.modmail_guild.get_role(perm)
                 if key is not None:
-                    logger.info("Granting %s access to Modmail category.", key.name)
+                    logger.info("Otorgar acceso %s a RequiemSupport.", key.name)
                     overwrites[key] = discord.PermissionOverwrite(read_messages=True)
 
         category = await self.bot.modmail_guild.create_category(
-            name="Modmail", overwrites=overwrites
+            name="RequiemSupport", overwrites=overwrites
         )
 
         await category.edit(position=0)
 
         log_channel = await self.bot.modmail_guild.create_text_channel(
-            name="bot-logs", category=category
+            name="「📜」┆˹registro˼", category=category
         )
-
-        embed = discord.Embed(
-            title="Friendly Reminder",
-            description=f"You may use the `{self.bot.prefix}config set log_channel_id "
-            "<channel-id>` command to set up a custom log channel, then you can delete this default "
-            f"{log_channel.mention} log channel.",
-            color=self.bot.main_color,
-        )
-
-        embed.add_field(
-            name="Thanks for using our bot!",
-            value="If you like what you see, consider giving the "
-            "[repo a star](https://github.com/kyb3r/modmail) :star: and if you are "
-            "feeling extra generous, buy us coffee on [Patreon](https://patreon.com/kyber) :heart:!",
-        )
-
-        embed.set_footer(text=f'Type "{self.bot.prefix}help" for a complete list of commands.')
-        await log_channel.send(embed=embed)
 
         self.bot.config["main_category_id"] = category.id
         self.bot.config["log_channel_id"] = log_channel.id
 
         await self.bot.config.update()
         await ctx.send(
-            "**Successfully set up server.**\n"
-            "Consider setting permission levels to give access to roles "
-            "or users the ability to use Modmail.\n\n"
-            f"Type:\n- `{self.bot.prefix}permissions` and `{self.bot.prefix}permissions add` "
-            "for more info on setting permissions.\n"
-            f"- `{self.bot.prefix}config help` for a list of available customizations."
+            "**Se configuró el servidor correctamente.**\n"
+            "Considere establecer niveles de permisos para otorgar acceso a roles "
+            "o ha los usuarios la capacidad de utilizar RequiemSupport.\n\n"
+            f"Usa:\n- `{self.bot.prefix}permissions` y `{self.bot.prefix}permissions add` "
+            "para obtener más información sobre la configuración de permisos.\n"
+            f"- `{self.bot.prefix}config help` para obtener una lista de las configuraciónes disponibles."
         )
 
         if not self.bot.config["command_permissions"] and not self.bot.config["level_permissions"]:
@@ -127,24 +109,25 @@ class Modmail(commands.Cog):
     @checks.has_permissions(PermissionLevel.SUPPORTER)
     async def snippet(self, ctx, *, name: str.lower = None):
         """
-        Create pre-defined messages for use in threads.
+        Cree mensajes predefinidos para usar en tickets.
 
-        When `{prefix}snippet` is used by itself, this will retrieve
-        a list of snippets that are currently set. `{prefix}snippet-name` will show what the
-        snippet point to.
+        Cuando se utiliza solo "{prefix}snippet", se obtiene
+        una lista de snippets que están configurados actualmente.
+        `{prefix}snippet-name` mostrará a lo que apuntan los snippets.
 
-        To create a snippet:
-        - `{prefix}snippet add snippet-name A pre-defined text.`
+        Para crear un snippet:
+        - `{prefix}snippet add snippet-name Un texto predefinido.`
 
-        You can use your snippet in a thread channel
-        with `{prefix}snippet-name`, the message "A pre-defined text."
-        will be sent to the recipient.
+        Puedes usar tu snippet en un canal de tickets.
+        con `{prefix}snippet-name`, el mensaje "Un texto predefinido"
+        Será enviado al destinatario.
 
-        Currently, there is not a built-in anonymous snippet command; however, a workaround
-        is available using `{prefix}alias`. Here is how:
-        - `{prefix}alias add snippet-name anonreply A pre-defined anonymous text.`
+        Actualmente, no hay un comando de snippet anónimo incorporado;
+        sin embargo, una solución está disponible usando `{prefix}alias`. 
+        Así es cómo:
+        - `{prefix}alias add snippet-name anonreply Un texto anónimo predefinido.`
 
-        See also `{prefix}alias`.
+        Ver también `{prefix}alias`.
         """
 
         if name is not None:
@@ -180,7 +163,7 @@ class Modmail(commands.Cog):
     @checks.has_permissions(PermissionLevel.SUPPORTER)
     async def snippet_raw(self, ctx, *, name: str.lower):
         """
-        View the raw content of a snippet.
+        Ver el contenido sin procesar de un snippet.
         """
         val = self.bot.snippets.get(name)
         if val is None:
@@ -199,22 +182,23 @@ class Modmail(commands.Cog):
     @checks.has_permissions(PermissionLevel.SUPPORTER)
     async def snippet_add(self, ctx, name: str.lower, *, value: commands.clean_content):
         """
-        Add a snippet.
+        Agrega un snippet.
 
-        Simply to add a snippet, do: ```
-        {prefix}snippet add hey hello there :)
+        Simplemente para agregar un snippet, haga lo siguiente: ```
+        {prefix}snippet add hey Hola a todos :)
         ```
-        then when you type `{prefix}hey`, "hello there :)" will get sent to the recipient.
+        entonces cuando escribes `{prefix}hey`, "Hola a todos :)"
+        será enviado al destinatario.
 
-        To add a multi-word snippet name, use quotes: ```
-        {prefix}snippet add "two word" this is a two word snippet.
+        Para agregar un nombre de snippet de varias palabras, use comillas: ```
+        {prefix}snippet add "dos palabras" este es un snippet de dos palabras.
         ```
         """
         if name in self.bot.snippets:
             embed = discord.Embed(
                 title="Error",
                 color=self.bot.error_color,
-                description=f"Snippet `{name}` already exists.",
+                description=f"Snippet `{name}` ya existe.",
             )
             return await ctx.send(embed=embed)
 
@@ -222,7 +206,7 @@ class Modmail(commands.Cog):
             embed = discord.Embed(
                 title="Error",
                 color=self.bot.error_color,
-                description=f"An alias that shares the same name exists: `{name}`.",
+                description=f"Existe un alias que comparte el mismo nombre: `{name}`.",
             )
             return await ctx.send(embed=embed)
 
@@ -230,7 +214,7 @@ class Modmail(commands.Cog):
             embed = discord.Embed(
                 title="Error",
                 color=self.bot.error_color,
-                description="Snippet names cannot be longer than 120 characters.",
+                description="Los nombres de los snippets no pueden tener más de 120 caracteres.",
             )
             return await ctx.send(embed=embed)
 
@@ -240,7 +224,7 @@ class Modmail(commands.Cog):
         embed = discord.Embed(
             title="Added snippet",
             color=self.bot.main_color,
-            description="Successfully created snippet.",
+            description="Snippet creado con éxito.",
         )
         return await ctx.send(embed=embed)
 
@@ -251,9 +235,9 @@ class Modmail(commands.Cog):
 
         if name in self.bot.snippets:
             embed = discord.Embed(
-                title="Removed snippet",
+                title="Snippet eliminado",
                 color=self.bot.main_color,
-                description=f"Snippet `{name}` is now deleted.",
+                description=f"Snippet `{name}` ahora está eliminado.",
             )
             self.bot.snippets.pop(name)
             await self.bot.config.update()
@@ -265,10 +249,10 @@ class Modmail(commands.Cog):
     @checks.has_permissions(PermissionLevel.SUPPORTER)
     async def snippet_edit(self, ctx, name: str.lower, *, value):
         """
-        Edit a snippet.
+        Edite un snippet.
 
-        To edit a multi-word snippet name, use quotes: ```
-        {prefix}snippet edit "two word" this is a new two word snippet.
+        Para editar un nombre de snippet de varias palabras, use comillas: ```
+        {prefix}snippet edit "dos palabras" este es un nuevo snippet de dos palabras.
         ```
         """
         if name in self.bot.snippets:
@@ -276,9 +260,9 @@ class Modmail(commands.Cog):
             await self.bot.config.update()
 
             embed = discord.Embed(
-                title="Edited snippet",
+                title="Snippet editado",
                 color=self.bot.main_color,
-                description=f'`{name}` will now send "{value}".',
+                description=f'`{name}` ahora enviará "{value}".',
             )
         else:
             embed = create_not_found_embed(name, self.bot.snippets.keys(), "Snippet")
@@ -289,10 +273,10 @@ class Modmail(commands.Cog):
     @checks.thread_only()
     async def move(self, ctx, category: discord.CategoryChannel, *, specifics: str = None):
         """
-        Move a thread to another category.
+        Mover un ticket a otra categoría.
 
-        `category` may be a category ID, mention, or name.
-        `specifics` is a string which takes in arguments on how to perform the move. Ex: "silently"
+        `categoría` puede ser un ID de categoría, una mención o un nombre.
+        `detalles` es una cadena que incluye argumentos sobre cómo realizar el movimiento. Ej.: "en silencio"
         """
         thread = ctx.thread
         silent = False
@@ -305,7 +289,7 @@ class Modmail(commands.Cog):
 
         if self.bot.config["thread_move_notify"] and not silent:
             embed = discord.Embed(
-                title="Thread Moved",
+                title="Ticket movido",
                 description=self.bot.config["thread_move_response"],
                 color=self.bot.main_color,
             )
@@ -320,15 +304,15 @@ class Modmail(commands.Cog):
         silent = "*silently* " if silent else ""
 
         embed = discord.Embed(
-            title="Scheduled close",
-            description=f"This thread will close {silent}in {human_delta}.",
+            title="Cierre programado",
+            description=f"Este ticket se cerrará {silent} en {human_delta}.",
             color=self.bot.error_color,
         )
 
         if after.arg and not silent:
-            embed.add_field(name="Message", value=after.arg)
+            embed.add_field(name="Mensaje", value=after.arg)
 
-        embed.set_footer(text="Closing will be cancelled if a thread message is sent.")
+        embed.set_footer(text="El cierre se cancelará si se envía un mensaje de conversación.")
         embed.timestamp = after.dt
 
         await ctx.send(embed=embed)
@@ -338,21 +322,21 @@ class Modmail(commands.Cog):
     @checks.thread_only()
     async def close(self, ctx, *, after: UserFriendlyTime = None):
         """
-        Close the current thread.
+        Cierra el ticket actual.
 
-        Close after a period of time:
+        Cerrar después de un período de tiempo:
         - `{prefix}close in 5 hours`
         - `{prefix}close 2m30s`
 
-        Custom close messages:
-        - `{prefix}close 2 hours The issue has been resolved.`
-        - `{prefix}close We will contact you once we find out more.`
+        Mensajes de cierre personalizados:
+        - `{prefix}close 2 hours El problema ha sido resuelto.`
+        - `{prefix}close Nos pondremos en contacto contigo una vez que sepamos más.`
 
-        Silently close a thread (no message)
+        Cerrar un ticket en silencio (sin mensaje)
         - `{prefix}close silently`
         - `{prefix}close in 10m silently`
 
-        Stop a thread from closing:
+        Evita que un ticket se cierre:
         - `{prefix}close cancel`
         """
 
@@ -370,12 +354,12 @@ class Modmail(commands.Cog):
             if thread.close_task is not None or thread.auto_close_task is not None:
                 await thread.cancel_closure(all=True)
                 embed = discord.Embed(
-                    color=self.bot.error_color, description="Scheduled close has been cancelled."
+                    color=self.bot.error_color, description="Se canceló el cierre programado."
                 )
             else:
                 embed = discord.Embed(
                     color=self.bot.error_color,
-                    description="This thread has not already been scheduled to close.",
+                    description="Este ticket aún no está programado para cerrarse.",
                 )
 
             return await ctx.send(embed=embed)
@@ -403,17 +387,16 @@ class Modmail(commands.Cog):
         self, ctx, *, user_or_role: Union[discord.Role, User, str.lower, None] = None
     ):
         """
-        Notify a user or role when the next thread message received.
+        Notificar a un usuario o rol cuando se reciba el siguiente ticket.
 
-        Once a thread message is received, `user_or_role` will be pinged once.
+        Una vez que se recibe un ticket, se hará ping una vez a `user_or_role`.
 
-        Leave `user_or_role` empty to notify yourself.
-        `@here` and `@everyone` can be substituted with `here` and `everyone`.
-        `user_or_role` may be a user ID, mention, name. role ID, mention, name, "everyone", or "here".
+        Deje `user_or_role` vacío para notificarse.
+        `user_or_role` puede ser una ID de usuario/rol, mención, nombre, "everyone", o "here".
         """
         mention = self.parse_user_or_role(ctx, user_or_role)
         if mention is None:
-            raise commands.BadArgument(f"{user_or_role} is not a valid user or role.")
+            raise commands.BadArgument(f"{user_or_role} No es un usuario o rol válido.")
 
         thread = ctx.thread
 
@@ -425,14 +408,14 @@ class Modmail(commands.Cog):
         if mention in mentions:
             embed = discord.Embed(
                 color=self.bot.error_color,
-                description=f"{mention} is already going to be mentioned.",
+                description=f"{mention} ya se va a mencionar.",
             )
         else:
             mentions.append(mention)
             await self.bot.config.update()
             embed = discord.Embed(
                 color=self.bot.main_color,
-                description=f"{mention} will be mentioned on the next message received.",
+                description=f"{mention} se mencionará en el siguiente ticket.",
             )
         return await ctx.send(embed=embed)
 
@@ -443,11 +426,10 @@ class Modmail(commands.Cog):
         self, ctx, *, user_or_role: Union[discord.Role, User, str.lower, None] = None
     ):
         """
-        Un-notify a user, role, or yourself from a thread.
+        Anule la notificación a un usuario, rol o usted mismo de un ticket.
 
-        Leave `user_or_role` empty to un-notify yourself.
-        `@here` and `@everyone` can be substituted with `here` and `everyone`.
-        `user_or_role` may be a user ID, mention, name, role ID, mention, name, "everyone", or "here".
+        Deje `user_or_role` vacío para anular la notificación.
+        `user_or_role` puede ser una ID de usuario/rol, mención, nombre, "everyone", o "here".
         """
         mention = self.parse_user_or_role(ctx, user_or_role)
         if mention is None:
@@ -463,13 +445,13 @@ class Modmail(commands.Cog):
         if mention not in mentions:
             embed = discord.Embed(
                 color=self.bot.error_color,
-                description=f"{mention} does not have a pending notification.",
+                description=f"{mention} no tiene una notificación pendiente.",
             )
         else:
             mentions.remove(mention)
             await self.bot.config.update()
             embed = discord.Embed(
-                color=self.bot.main_color, description=f"{mention} will no longer be notified."
+                color=self.bot.main_color, description=f"{mention} ya no será notificado."
             )
         return await ctx.send(embed=embed)
 
@@ -480,17 +462,16 @@ class Modmail(commands.Cog):
         self, ctx, *, user_or_role: Union[discord.Role, User, str.lower, None] = None
     ):
         """
-        Notify a user, role, or yourself for every thread message received.
+        Notifique a un usuario, rol o usted mismo por cada ticket.
+        
+        Se le hará ping por cada ticket hasta que cancele la suscripción.
 
-        You will be pinged for every thread message received until you unsubscribe.
-
-        Leave `user_or_role` empty to subscribe yourself.
-        `@here` and `@everyone` can be substituted with `here` and `everyone`.
-        `user_or_role` may be a user ID, mention, name, role ID, mention, name, "everyone", or "here".
+        Deje `user_or_role` vacío para notificarse.
+        `user_or_role` puede ser una ID de usuario/rol, mención, nombre, "everyone", o "here".
         """
         mention = self.parse_user_or_role(ctx, user_or_role)
         if mention is None:
-            raise commands.BadArgument(f"{user_or_role} is not a valid user or role.")
+            raise commands.BadArgument(f"{user_or_role} No es un usuario o rol válido.")
 
         thread = ctx.thread
 
@@ -502,14 +483,14 @@ class Modmail(commands.Cog):
         if mention in mentions:
             embed = discord.Embed(
                 color=self.bot.error_color,
-                description=f"{mention} is not subscribed to this thread.",
+                description=f"{mention} no está suscrito a este ticket.",
             )
         else:
             mentions.append(mention)
             await self.bot.config.update()
             embed = discord.Embed(
                 color=self.bot.main_color,
-                description=f"{mention} will now be notified of all messages received.",
+                description=f"{mention} ahora será notificado en todos los tickets.",
             )
         return await ctx.send(embed=embed)
 
@@ -520,11 +501,10 @@ class Modmail(commands.Cog):
         self, ctx, *, user_or_role: Union[discord.Role, User, str.lower, None] = None
     ):
         """
-        Unsubscribe a user, role, or yourself from a thread.
+        Dar de baja a un usuario, rol o usted mismo de un ticket.
 
-        Leave `user_or_role` empty to unsubscribe yourself.
-        `@here` and `@everyone` can be substituted with `here` and `everyone`.
-        `user_or_role` may be a user ID, mention, name, role ID, mention, name, "everyone", or "here".
+        Deje `user_or_role` vacío para anular la notificación.
+        `user_or_role` puede ser una ID de usuario/rol, mención, nombre, "everyone", o "here".
         """
         mention = self.parse_user_or_role(ctx, user_or_role)
         if mention is None:
@@ -540,35 +520,17 @@ class Modmail(commands.Cog):
         if mention not in mentions:
             embed = discord.Embed(
                 color=self.bot.error_color,
-                description=f"{mention} is not subscribed to this thread.",
+                description=f"{mention} no está suscrito a este ticket.",
             )
         else:
             mentions.remove(mention)
             await self.bot.config.update()
             embed = discord.Embed(
                 color=self.bot.main_color,
-                description=f"{mention} is now unsubscribed from this thread.",
+                description=f"{mention} ahora se ha cancelado la suscripción a este ticket.",
             )
         return await ctx.send(embed=embed)
-
-    @commands.command()
-    @checks.has_permissions(PermissionLevel.SUPPORTER)
-    @checks.thread_only()
-    async def nsfw(self, ctx):
-        """Flags a Modmail thread as NSFW (not safe for work)."""
-        await ctx.channel.edit(nsfw=True)
-        sent_emoji, _ = await self.bot.retrieve_emoji()
-        await self.bot.add_reaction(ctx.message, sent_emoji)
-
-    @commands.command()
-    @checks.has_permissions(PermissionLevel.SUPPORTER)
-    @checks.thread_only()
-    async def sfw(self, ctx):
-        """Flags a Modmail thread as SFW (safe for work)."""
-        await ctx.channel.edit(nsfw=False)
-        sent_emoji, _ = await self.bot.retrieve_emoji()
-        await self.bot.add_reaction(ctx.message, sent_emoji)
-
+    
     @commands.command()
     @checks.has_permissions(PermissionLevel.SUPPORTER)
     @checks.thread_only()
