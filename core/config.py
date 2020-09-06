@@ -26,9 +26,9 @@ class ConfigManager:
         # activity
         "twitch_url": "https://www.twitch.tv/lucasbra_98/",
         # bot settings
-        "main_category_id": "751908128865386636",
-        "fallback_category_id": 508484613329649665,
-        "prefix": "s!",
+        "main_category_id": "751316720140025926",
+        "fallback_category_id": "752272179353223328",
+        "prefix": "?",
         "mention": "@here",
         "main_color": "#a561ff",
         "error_color": str(discord.Color.red()),
@@ -40,7 +40,7 @@ class ConfigManager:
         "reply_without_command": False,
         "anon_reply_without_command": False,
         # logging
-        "log_channel_id": 751908129297399820,
+        "log_channel_id": "751181156786896927",
         # threads
         "sent_emoji": "✅",
         "blocked_emoji": "🚫",
@@ -77,7 +77,7 @@ class ConfigManager:
 
     private_keys = {
         # bot presence
-        "activity_message": "",
+        "activity_message": "> Escribeme por DM para crear un Ticket de Soporte <",
         "activity_type": None,
         "status": None,
         # dm_disabled 0 = none, 1 = new threads, 2 = all threads
