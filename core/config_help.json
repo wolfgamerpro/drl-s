@@ -495,9 +495,9 @@
   },
   "anon_tag": {
     "default": "\"Respuesta\"",
-    "description": "Esta es la etiqueta de nombre en la sección de "pie de página" enviado por moderadores anónimos en el DM del destinatario.",
+    "description": "This is the name tag in the “footer” section of the embeds sent by anonymous moderators in the recipient DM.",
     "examples": [
-      "`{prefix}config set anon_tag Miembro de Soporte`"
+      "`{prefix}config set anon_tag Support Agent`"
     ],
     "notes": [
       "Ver también: `anon_avatar_url`, `anon_username`, `mod_tag`."
@@ -505,84 +505,84 @@
     "image": "https://i.imgur.com/SKOC42Z.png"
   },
   "modmail_guild_id": {
-    "default": "Recurrir a `GUILD_ID`",
-    "description": "El ID del servidor de discord donde se deben crear los canales de ticket (servidor de recepción).",
+    "default": "Fallback on `GUILD_ID`",
+    "description": "The ID of the discord server where the threads channels should be created (receiving server).",
     "examples": [
     ],
     "notes": [
-      "Esta configuración solo se puede establecer mediante el archivo `.env` o variables de entorno (config)."
+      "This configuration can only to be set through `.env` file or environment (config) variables."
     ]
   },
   "guild_id": {
     "default": "None, required",
-    "description": "El ID del servidor de discord donde residen los usuarios destinatarios (servidor de discord).",
+    "description": "The ID of the discord server where recipient users reside (users server).",
     "examples": [
     ],
     "notes": [
-      "Esta configuración solo se puede establecer mediante el archivo `.env` o variables de entorno (config)."
+      "This configuration can only to be set through `.env` file or environment (config) variables."
     ]
   },
   "log_url": {
     "default": "https://example.com/",
-    "description": "El enlace de la URL del registro, déjelo como está para no establecer un registro.",
+    "description": "The base log viewer URL link, leave this as-is to not configure a log viewer.",
     "examples": [
     ],
     "notes": [
-      "Esta configuración solo se puede establecer mediante el archivo `.env` o variables de entorno (config)."
+      "This configuration can only to be set through `.env` file or environment (config) variables."
     ]
   },
   "log_url_prefix": {
     "default": "`/logs`",
-    "description": "La ruta del registro que se extiende desde su `LOG_URL`, establecer esto en `/` para no especificar una ruta adicional al registro.",
+    "description": "The path to your log viewer extending from your `LOG_URL`, set this to `/` to specify no extra path to the log viewer.",
+    "examples": [
+    ],
+    "notes": [
+      "This configuration can only to be set through `.env` file or environment (config) variables."
+    ]
+  },
+  "mongo_uri": {
+    "default": "None, required",
+    "description": "Una cadena de conexión de MongoDB.",
     "examples": [
     ],
     "notes": [
       "Esta configuración solo se puede establecer mediante el archivo `.env` o variables de entorno (config)."
     ]
   },
-  "mongo_uri": {
-    "default": "None, required",
-    "description": "A MongoDB connection string.",
-    "examples": [
-    ],
-    "notes": [
-      "This configuration can only to be set through `.env` file or environment (config) variables."
-    ]
-  },
   "owners": {
     "default": "None, required",
-    "description": "A list of definite bot owners, use `{prefix}perms add level OWNER @user` to set flexible bot owners.",
+    "description": "Una lista de propietarios del bot definidos, utilice `{prefix}perms add level OWNER @user` para establecer propietarios de bots flexibles.",
     "examples": [
     ],
     "notes": [
-      "This configuration can only to be set through `.env` file or environment (config) variables."
+      "Esta configuración solo se puede establecer mediante el archivo `.env` o variables de entorno (config)."
     ]
   },
   "token": {
     "default": "None, required",
-    "description": "Your bot token as found in the Discord Developer Portal.",
+    "description": "Su token de bot como se encuentra en el portal de desarrolladores de Discord.",
     "examples": [
     ],
     "notes": [
-      "This configuration can only to be set through `.env` file or environment (config) variables."
+      "Esta configuración solo se puede establecer mediante el archivo `.env` o variables de entorno (config)."
     ]
   },
   "log_level": {
     "default": "INFO",
-    "description": "The logging level for logging to stdout.",
+    "description": "El nivel de registro para iniciar sesión en stdout.",
     "examples": [
     ],
     "notes": [
-      "This configuration can only to be set through `.env` file or environment (config) variables."
+      "Esta configuración solo se puede establecer mediante el archivo `.env` o variables de entorno (config)."
     ]
   },
   "enable_plugins": {
     "default": "Yes",
-    "description": "Whether plugins should be enabled and loaded into Modmail.",
+    "description": "Si los complementos deben habilitarse y cargarse en RequiemSupport.",
     "examples": [
     ],
     "notes": [
-      "This configuration can only to be set through `.env` file or environment (config) variables."
+      "Esta configuración solo se puede establecer mediante el archivo `.env` o variables de entorno (config)."
     ]
   }
 }
