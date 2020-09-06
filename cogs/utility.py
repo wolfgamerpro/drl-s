@@ -335,27 +335,6 @@ class Utility(commands.Cog):
         embed.set_footer(text=footer)
         await ctx.send(embed=embed)
 
-    @commands.command()
-    @checks.has_permissions(PermissionLevel.REGULAR)
-    @utils.trigger_typing
-    async def sponsors(self, ctx):
-        """Shows a list of sponsors."""
-        resp = await self.bot.session.get(
-            "https://raw.githubusercontent.com/kyb3r/modmail/master/SPONSORS.json"
-        )
-        data = loads(await resp.text())
-
-        embeds = []
-
-        for elem in data:
-            embed = discord.Embed.from_dict(elem["embed"])
-            embeds.append(embed)
-
-        random.shuffle(embeds)
-
-        session = EmbedPaginatorSession(ctx, *embeds)
-        await session.run()
-
     @commands.group(invoke_without_command=True)
     @checks.has_permissions(PermissionLevel.OWNER)
     @utils.trigger_typing
