@@ -535,14 +535,14 @@ class Modmail(commands.Cog):
     @checks.has_permissions(PermissionLevel.SUPPORTER)
     @checks.thread_only()
     async def loglink(self, ctx):
-        """Retrieves the link to the current thread's logs."""
+        """Obtiene el enlace a los registros del ticket actual."""
         log_link = await self.bot.api.get_log_link(ctx.channel.id)
         await ctx.send(embed=discord.Embed(color=self.bot.main_color, description=log_link))
 
     def format_log_embeds(self, logs, avatar_url):
         embeds = []
         logs = tuple(logs)
-        title = f"Total Results Found ({len(logs)})"
+        title = f"Resultados totales encontrados: ({len(logs)})"
 
         for entry in logs:
             created_at = parser.parse(entry["created_at"])
@@ -558,27 +558,27 @@ class Modmail(commands.Cog):
             embed = discord.Embed(color=self.bot.main_color, timestamp=created_at)
             embed.set_author(name=f"{title} - {username}", icon_url=avatar_url, url=log_url)
             embed.url = log_url
-            embed.add_field(name="Created", value=duration(created_at, now=datetime.utcnow()))
+            embed.add_field(name="Creado", value=duration(created_at, now=datetime.utcnow()))
             closer = entry.get("closer")
             if closer is None:
                 closer_msg = "Unknown"
             else:
                 closer_msg = f"<@{closer['id']}>"
-            embed.add_field(name="Closed By", value=closer_msg)
+            embed.add_field(name="Cerrado por", value=closer_msg)
 
             if entry["recipient"]["id"] != entry["creator"]["id"]:
                 embed.add_field(name="Created by", value=f"<@{entry['creator']['id']}>")
 
-            embed.add_field(name="Preview", value=format_preview(entry["messages"]), inline=False)
+            embed.add_field(name="Vista previa", value=format_preview(entry["messages"]), inline=False)
 
             if closer is not None:
                 # BUG: Currently, logviewer can't display logs without a closer.
                 embed.add_field(name="Link", value=log_url)
             else:
-                logger.debug("Invalid log entry: no closer.")
-                embed.add_field(name="Log Key", value=f"`{entry['key']}`")
+                logger.debug("Entrada de registro no válido: no cerrado.")
+                embed.add_field(name="Clave de registro", value=f"`{entry['key']}`")
 
-            embed.set_footer(text="Recipient ID: " + str(entry["recipient"]["id"]))
+            embed.set_footer(text="ID del destinatario: " + str(entry["recipient"]["id"]))
             embeds.append(embed)
         return embeds
 
@@ -586,11 +586,11 @@ class Modmail(commands.Cog):
     @checks.has_permissions(PermissionLevel.SUPPORTER)
     async def logs(self, ctx, *, user: User = None):
         """
-        Get previous Modmail thread logs of a member.
+        Obtener registros de tickets anteriores de un miembro.
 
-        Leave `user` blank when this command is used within a
-        thread channel to show logs for the current recipient.
-        `user` may be a user ID, mention, or name.
+        Deje `user` en blanco cuando este comando se utilice dentro de un
+        canal de ticket para mostrar los registros del destinatario actual.
+        `user` puede ser la ID de usuario, una mención o un nombre.
         """
 
         await ctx.trigger_typing()
@@ -609,7 +609,7 @@ class Modmail(commands.Cog):
         if not any(not log["open"] for log in logs):
             embed = discord.Embed(
                 color=self.bot.error_color,
-                description="This user does not have any previous logs.",
+                description="Este usuario no tiene registros anteriores.",
             )
             return await ctx.send(embed=embed)
 
@@ -624,10 +624,10 @@ class Modmail(commands.Cog):
     @checks.has_permissions(PermissionLevel.SUPPORTER)
     async def logs_closed_by(self, ctx, *, user: User = None):
         """
-        Get all logs closed by the specified user.
+        Obtiene todos los registros cerrados por el usuario especificado.
 
-        If no `user` is provided, the user will be the person who sent this command.
-        `user` may be a user ID, mention, or name.
+        Si no se proporciona el `user`, el usuario será la persona que envió este comando.
+        `user` puede ser la ID de usuario, una mención o un nombre.
         """
         user = user if user is not None else ctx.author
 
@@ -637,7 +637,7 @@ class Modmail(commands.Cog):
         if not embeds:
             embed = discord.Embed(
                 color=self.bot.error_color,
-                description="No log entries have been found for that query.",
+                description="No se han encontrado entradas de registro para esa consulta.",
             )
             return await ctx.send(embed=embed)
 
@@ -648,7 +648,7 @@ class Modmail(commands.Cog):
     @checks.has_permissions(PermissionLevel.OWNER)
     async def logs_delete(self, ctx, key_or_link: str):
         """
-        Wipe a log entry from the database.
+        Borra una entrada de registro de la base de datos.
         """
         key = key_or_link.split("/")[-1]
 
@@ -657,13 +657,13 @@ class Modmail(commands.Cog):
         if not success:
             embed = discord.Embed(
                 title="Error",
-                description=f"Log entry `{key}` not found.",
+                description=f"Entrada de registro`{key}` no encontrada.",
                 color=self.bot.error_color,
             )
         else:
             embed = discord.Embed(
-                title="Success",
-                description=f"Log entry `{key}` successfully deleted.",
+                title="Éxito",
+                description=f"Entrada de registro`{key}` eliminada correctamente.",
                 color=self.bot.main_color,
             )
 
@@ -673,10 +673,10 @@ class Modmail(commands.Cog):
     @checks.has_permissions(PermissionLevel.SUPPORTER)
     async def logs_responded(self, ctx, *, user: User = None):
         """
-        Get all logs where the specified user has responded at least once.
+        Obtenga todos los registros donde el usuario especificado haya respondido al menos una vez.
 
-        If no `user` is provided, the user will be the person who sent this command.
-        `user` may be a user ID, mention, or name.
+        Si no se proporciona el `user`, el usuario será la persona que envió este comando.
+        `user` puede ser la ID de usuario, una mención o un nombre.
         """
         user = user if user is not None else ctx.author
 
@@ -696,11 +696,11 @@ class Modmail(commands.Cog):
 
     @logs.command(name="search", aliases=["find"])
     @checks.has_permissions(PermissionLevel.SUPPORTER)
-    async def logs_search(self, ctx, limit: Optional[int] = None, *, query):
+    async def logs_search(self, ctx, límite: Optional[int] = None, *, query):
         """
-        Retrieve all logs that contain messages with your query.
+        Recupera todos los registros que contienen mensajes especificados.
 
-        Provide a `limit` to specify the maximum number of logs the bot should find.
+        Proporcione un "límite" para especificar el número máximo de registros que el bot debe encontrar.
         """
 
         await ctx.trigger_typing()
