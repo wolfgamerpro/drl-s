@@ -447,7 +447,7 @@
   },
   "mod_color": {
     "default": "Discord Green [#2ECC71](https://placehold.it/100/2ecc71?text=+)",
-    "description": "This is the color of the messages sent by the moderators, this applies to messages within in the thread channel and the DM thread messages received by the recipient.",
+    "description": "Este es el color de los mensajes enviados por los moderadores, esto se aplica a los mensajes dentro del canal del ticket y los mensajes del ticket DM recibidos por el destinatario.",
     "examples": [
       "`{prefix}config set mod_color dark beige`",
       "`{prefix}config set mod_color cb7723`",
@@ -455,134 +455,133 @@
       "`{prefix}config set mod_color c4k`"
     ],
     "notes": [
-      "Available color names can be found on [Taki's Blog](https://taaku18.github.io/modmail/colors/).",
-      "See also: `recipient_color`, `main_color`, `error_color`."
+      "Ver también: `recipient_color`, `main_color`, `error_color`."
     ],
     "thumbnail": "https://placehold.it/100/2ecc71?text=+"
   },
   "mod_tag": {
-    "default": "The moderator's highest role",
-    "description": "This is the name tag in the “footer” section of the embeds sent by moderators in the recipient DM and thread channel.",
+    "default": "El rol más alto del moderador",
+    "description": "Este es el rol en la sección de "pie de página" enviadas por los moderadores en el DM del destinatario y el canal del hilo.",
     "examples": [
-      "`{prefix}config set mod_tag Moderator`"
+      "`{prefix}config set mod_tag Moderador`"
     ],
     "notes": [
-      "When the message is sent anonymously, `anon_tag` is used instead.",
-      "See also: `anon_tag`."
+      "Cuando el mensaje se envía de forma anónima, `anon_tag` se utiliza en su lugar.",
+      "Ver también: `anon_tag`."
     ]
   },
   "anon_username": {
-    "default": "Fallback on `mod_tag`",
-    "description": "This is the name in the “author” section of the embeds sent by anonymous moderators in the recipient DM.",
+    "default": "Recurrir a `mod_tag`",
+    "description": "Este es el nombre en la sección "autor" enviado por moderadores anónimos en el DM del destinatario.",
     "examples": [
-      "`{prefix}config set anon_username Incognito Mod`"
+      "`{prefix}config set anon_username Mod Incognito`"
     ],
     "notes": [
-      "See also: `anon_avatar_url`, `anon_tag`."
+      "Ver también: `anon_avatar_url`, `anon_tag`."
     ],
     "image": "https://i.imgur.com/SKOC42Z.png"
   },
   "anon_avatar_url": {
     "default": "Server avatar",
-    "description": "This is the avatar of the embeds sent by anonymous moderators in the recipient DM.",
+    "description": "Este es el avatar enviado por moderadores anónimos en el DM del destinatario.",
     "examples": [
-      "`{prefix}config set anon_avatar_url https://path.to/your/avatar.png` (you will need to upload the avatar to somewhere)"
+      "`{prefix}config set anon_avatar_url https://path.to/your/avatar.png` (deberás subir el avatar a algún lugar)"
     ],
     "notes": [
-      "See also: `anon_username`, `anon_tag`."
+      "Ver también: `anon_username`, `anon_tag`."
     ],
     "image": "https://i.imgur.com/SKOC42Z.png"
   },
   "anon_tag": {
-    "default": "\"Response\"",
-    "description": "This is the name tag in the “footer” section of the embeds sent by anonymous moderators in the recipient DM.",
+    "default": "\"Respuesta\"",
+    "description": "Esta es la etiqueta de nombre en la sección de "pie de página" enviado por moderadores anónimos en el DM del destinatario.",
     "examples": [
-      "`{prefix}config set anon_tag Support Agent`"
+      "`{prefix}config set anon_tag Miembro de Soporte`"
     ],
     "notes": [
-      "See also: `anon_avatar_url`, `anon_username`, `mod_tag`."
+      "Ver también: `anon_avatar_url`, `anon_username`, `mod_tag`."
     ],
     "image": "https://i.imgur.com/SKOC42Z.png"
   },
   "modmail_guild_id": {
-    "default": "Fallback on `GUILD_ID`",
-    "description": "The ID of the discord server where the threads channels should be created (receiving server).",
+    "default": "Recurrir a `GUILD_ID`",
+    "description": "El ID del servidor de discord donde se deben crear los canales de ticket (servidor de recepción).",
     "examples": [
     ],
     "notes": [
-      "This configuration can only to be set through `.env` file or environment (config) variables."
+      "Esta configuración solo se puede establecer mediante el archivo `.env` o variables de entorno (config)."
     ]
   },
   "guild_id": {
     "default": "None, required",
-    "description": "The ID of the discord server where recipient users reside (users server).",
+    "description": "El ID del servidor de discord donde residen los usuarios destinatarios (servidor de discord).",
     "examples": [
     ],
     "notes": [
-      "This configuration can only to be set through `.env` file or environment (config) variables."
+      "Esta configuración solo se puede establecer mediante el archivo `.env` o variables de entorno (config)."
     ]
   },
   "log_url": {
     "default": "https://example.com/",
-    "description": "The base log viewer URL link, leave this as-is to not configure a log viewer.",
+    "description": "El enlace de la URL del registro, déjelo como está para no establecer un registro.",
     "examples": [
     ],
     "notes": [
-      "This configuration can only to be set through `.env` file or environment (config) variables."
+      "Esta configuración solo se puede establecer mediante el archivo `.env` o variables de entorno (config)."
     ]
   },
   "log_url_prefix": {
     "default": "`/logs`",
-    "description": "The path to your log viewer extending from your `LOG_URL`, set this to `/` to specify no extra path to the log viewer.",
+    "description": "La ruta del registro que se extiende desde su `LOG_URL`, establecer esto en `/` para no especificar una ruta adicional al registro.",
     "examples": [
     ],
     "notes": [
-      "This configuration can only to be set through `.env` file or environment (config) variables."
+      "Esta configuración solo se puede establecer mediante el archivo `.env` o variables de entorno (config)."
     ]
   },
   "mongo_uri": {
     "default": "None, required",
-    "description": "A MongoDB connection string.",
+    "description": "Una cadena de conexión de MongoDB.",
     "examples": [
     ],
     "notes": [
-      "This configuration can only to be set through `.env` file or environment (config) variables."
+      "Esta configuración solo se puede establecer mediante el archivo `.env` o variables de entorno (config)."
     ]
   },
   "owners": {
     "default": "None, required",
-    "description": "A list of definite bot owners, use `{prefix}perms add level OWNER @user` to set flexible bot owners.",
+    "description": "Una lista de propietarios del bot definidos, utilice `{prefix}perms add level OWNER @user` para establecer propietarios de bots flexibles.",
     "examples": [
     ],
     "notes": [
-      "This configuration can only to be set through `.env` file or environment (config) variables."
+      "Esta configuración solo se puede establecer mediante el archivo `.env` o variables de entorno (config)."
     ]
   },
   "token": {
     "default": "None, required",
-    "description": "Your bot token as found in the Discord Developer Portal.",
+    "description": "Su token de bot como se encuentra en el portal de desarrolladores de Discord.",
     "examples": [
     ],
     "notes": [
-      "This configuration can only to be set through `.env` file or environment (config) variables."
+      "Esta configuración solo se puede establecer mediante el archivo `.env` o variables de entorno (config)."
     ]
   },
   "log_level": {
     "default": "INFO",
-    "description": "The logging level for logging to stdout.",
+    "description": "El nivel de registro para iniciar sesión en stdout.",
     "examples": [
     ],
     "notes": [
-      "This configuration can only to be set through `.env` file or environment (config) variables."
+      "Esta configuración solo se puede establecer mediante el archivo `.env` o variables de entorno (config)."
     ]
   },
   "enable_plugins": {
     "default": "Yes",
-    "description": "Whether plugins should be enabled and loaded into Modmail.",
+    "description": "Si los complementos deben habilitarse y cargarse en RequiemSupport.",
     "examples": [
     ],
     "notes": [
-      "This configuration can only to be set through `.env` file or environment (config) variables."
+      "Esta configuración solo se puede establecer mediante el archivo `.env` o variables de entorno (config)."
     ]
   }
 }
