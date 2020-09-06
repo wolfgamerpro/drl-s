@@ -409,24 +409,17 @@ class Utility(commands.Cog):
 
     @commands.command(aliases=["presence"])
     @checks.has_permissions(PermissionLevel.ADMINISTRATOR)
-    async def activity(self, ctx, activity_type: str.lower, *, message: str = ""):
+    async def activity(self, ctx, tipo_actividad: str.lower, *, mensaje: str = ""):
         """
-        Set an activity status for the bot.
+        Establezca un estado de actividad para el bot.
 
-        Possible activity types:
+        Posibles tipos de actividad:
             - `playing`
             - `streaming`
             - `listening`
             - `watching`
-
-        When activity type is set to `listening`,
-        it must be followed by a "to": "listening to..."
-
-        When activity type is set to `streaming`, you can set
-        the linked twitch page:
-        - `{prefix}config set twitch_url https://www.twitch.tv/somechannel/`
-
-        To remove the current activity status:
+            
+        Para eliminar el estado de actividad actual:
         - `{prefix}activity clear`
         """
         if activity_type == "clear":
@@ -466,15 +459,15 @@ class Utility(commands.Cog):
     @checks.has_permissions(PermissionLevel.ADMINISTRATOR)
     async def status(self, ctx, *, status_type: str.lower):
         """
-        Set a status for the bot.
+        Establezca un estado para el bot.
 
-        Possible status types:
+        Posibles tipos de estado:
             - `online`
             - `idle`
-            - `dnd` or `do not disturb`
-            - `invisible` or `offline`
+            - `dnd` o `do not disturb`
+            - `invisible` o `offline`
 
-        To remove the current status:
+        Para eliminar el estado actual:
         - `{prefix}status clear`
         """
         if status_type == "clear":
@@ -575,11 +568,11 @@ class Utility(commands.Cog):
 
     @commands.command()
     @checks.has_permissions(PermissionLevel.ADMINISTRATOR)
-    async def mention(self, ctx, *, mention: str = None):
+    async def mention(self, ctx, *, mención: str = None):
         """
-        Change what the bot mentions at the start of each thread.
-
-        Type only `{prefix}mention` to retrieve your current "mention" message.
+        Cambia lo que menciona el bot al comienzo de cada ticket.
+        
+        Usa `{prefix}mention` para obtener la mención actual
         """
         # TODO: ability to disable mention.
         current = self.bot.config["mention"]
@@ -591,10 +584,10 @@ class Utility(commands.Cog):
         else:
             embed = discord.Embed(
                 title="¡Mención cambiada!",
-                description=f'En la creación del ticket, el bot ahora dice "{mention}".',
+                description=f'En la creación del ticket, el bot ahora dice "{mención}".',
                 color=self.bot.main_color,
             )
-            self.bot.config["mention"] = mention
+            self.bot.config["mention"] = mención
             await self.bot.config.update()
 
         return await ctx.send(embed=embed)
@@ -603,9 +596,9 @@ class Utility(commands.Cog):
     @checks.has_permissions(PermissionLevel.ADMINISTRATOR)
     async def prefix(self, ctx, *, prefix=None):
         """
-        Change the prefix of the bot.
+        Cambia el prefijo del bot.
 
-        Type only `{prefix}prefix` to retrieve your current bot prefix.
+        Usa`{prefix}prefix` para obtener el prefix actual.
         """
 
         current = self.bot.prefix
@@ -626,18 +619,18 @@ class Utility(commands.Cog):
     @checks.has_permissions(PermissionLevel.OWNER)
     async def config(self, ctx):
         """
-        Modify changeable configuration variables for this bot.
+        Modifique las variables de configuración modificables para este bot.
 
-        Type `{prefix}config options` to view a list
-        of valid configuration variables.
+        Tipo `{prefix}config options` para ver una lista
+        de variables de configuración válidas.
 
-        Type `{prefix}config help config-name` for info
-         on a config.
+        Tipo `{prefix}config help config-name` para obtener
+        información en una configuración.
 
-        To set a configuration variable:
-        - `{prefix}config set config-name value here`
+        Para establecer una variable de configuración:
+        - `{prefix}config set config-name valor`
 
-        To remove a configuration variable:
+        Para eliminar una variable de configuración:
         - `{prefix}config remove config-name`
         """
         await ctx.send_help(ctx.command)
@@ -645,7 +638,7 @@ class Utility(commands.Cog):
     @config.command(name="options", aliases=["list"])
     @checks.has_permissions(PermissionLevel.OWNER)
     async def config_options(self, ctx):
-        """Return a list of valid configuration names you can change."""
+        """Devuelve una lista de nombres de configuración válidos que puedes cambiar."""
         embeds = []
         for names in zip_longest(*(iter(sorted(self.bot.config.public_keys)),) * 15):
             description = "\n".join(
@@ -691,7 +684,7 @@ class Utility(commands.Cog):
     @config.command(name="remove", aliases=["del", "delete"])
     @checks.has_permissions(PermissionLevel.OWNER)
     async def config_remove(self, ctx, *, key: str.lower):
-        """Delete a set configuration variable."""
+        """Elimina una variable de configuración establecida."""
         keys = self.bot.config.public_keys
         if key in keys:
             self.bot.config.remove(key)
@@ -714,9 +707,9 @@ class Utility(commands.Cog):
     @checks.has_permissions(PermissionLevel.OWNER)
     async def config_get(self, ctx, *, key: str.lower = None):
         """
-        Show the configuration variables that are currently set.
+        Muestra las variables de configuración que están configuradas actualmente.
 
-        Leave `key` empty to show all currently set configuration variables.
+        Deje la `key` vacía para mostrar todas las variables de configuración establecidas actualmente.
         """
         keys = self.bot.config.public_keys
 
@@ -754,7 +747,7 @@ class Utility(commands.Cog):
     @checks.has_permissions(PermissionLevel.OWNER)
     async def config_help(self, ctx, key: str.lower = None):
         """
-        Show information on a specified configuration.
+        Muestra información sobre una configuración específica.
         """
         if key is not None and not (
             key in self.bot.config.public_keys or key in self.bot.config.protected_keys
@@ -825,20 +818,21 @@ class Utility(commands.Cog):
         """
         Crea accesos directos a los comandos de bot.
 
-        When `{prefix}alias` is used by itself, this will retrieve
-        a list of alias that are currently set. `{prefix}alias-name` will show what the
-        alias point to.
+        Cuando `{prefix} alias` se usa solo, este obtiene
+        una lista de alias que están configurados actualmente. 
+        
+        `{prefix} alias-name` mostrará los alías y a donde apuntan.
 
-        To use alias:
+        Para usar un alias:
 
-        First create an alias using:
-        - `{prefix}alias add alias-name other-command`
+        Primero crea un alias usando:
+        - `{prefix}alias add alias-name comando`
 
-        For example:
+        Ejemplo:
         - `{prefix}alias add r reply`
-        - Now you can use `{prefix}r` as an replacement for `{prefix}reply`.
+        - Ahora puedes usar `{prefix}r` como reemplazo de `{prefix}reply`.
 
-        See also `{prefix}snippet`.
+        Ver también `{prefix}snippet`.
         """
 
         if name is not None:
@@ -902,7 +896,7 @@ class Utility(commands.Cog):
     @checks.has_permissions(PermissionLevel.MODERATOR)
     async def alias_raw(self, ctx, *, name: str.lower):
         """
-        View the raw content of an alias.
+        Ver el contenido sin procesar de un alias.
         """
         val = self.bot.aliases.get(name)
         if val is None:
@@ -981,17 +975,17 @@ class Utility(commands.Cog):
     @checks.has_permissions(PermissionLevel.MODERATOR)
     async def alias_add(self, ctx, name: str.lower, *, value):
         """
-        Add an alias.
+        Agrega un alias.
 
-        Alias also supports multi-step aliases, to create a multi-step alias use quotes
-        to wrap each step and separate each step with `&&`. For example:
+         Alias también admite alias de varios pasos, para crear un alias de varios pasos, use comillas
+         para envolver cada paso y separar cada paso con `&&`. Por ejemplo:
 
-        - `{prefix}alias add movenreply "move admin-category" && "reply Thanks for reaching out to the admins"`
+        - `{prefix}alias add movenreply "move admin-category" && "reply Gracias por llegar a los administradores."`
 
-        However, if you run into problems, try wrapping the command with quotes. For example:
-
-        - This will fail: `{prefix}alias add reply You'll need to type && to work`
-        - Correct method: `{prefix}alias add reply "You'll need to type && to work"`
+        Sin embargo, si tiene problemas, intente envolver el comando entre comillas. Por ejemplo:
+        
+        - Esto fallará: `{prefix}alias add reply Necesitarás escribir && para trabajar`
+        - Método correcto: `{prefix}alias add reply "Necesitarás escribir && para trabajar"`
         """
         embed = None
         if self.bot.get_command(name):
@@ -1029,7 +1023,7 @@ class Utility(commands.Cog):
     @alias.command(name="remove", aliases=["del", "delete"])
     @checks.has_permissions(PermissionLevel.MODERATOR)
     async def alias_remove(self, ctx, *, name: str.lower):
-        """Remove an alias."""
+        """Quita un alias."""
 
         if name in self.bot.aliases:
             self.bot.aliases.pop(name)
@@ -1062,25 +1056,22 @@ class Utility(commands.Cog):
     @checks.has_permissions(PermissionLevel.OWNER)
     async def permissions(self, ctx):
         """
-        Set the permissions for Modmail commands.
+        Establezca los permisos para los comandos de RequiemSupport.
 
-        You may set permissions based on individual command names, or permission
-        levels.
+        Puede establecer permisos basados en nombres de comandos individuales o permisos
+        niveles.
 
-        Acceptable permission levels are:
-            - **Owner** [5] (absolute control over the bot)
-            - **Administrator** [4] (administrative powers such as setting activities)
-            - **Moderator** [3] (ability to block)
-            - **Supporter** [2] (access to core Modmail supporting functions)
-            - **Regular** [1] (most basic interactions such as help and about)
+        Los niveles de permisos aceptables son:
+            - **Owner** [5] (control absoluto sobre el bot)
+            - **Administrator** [4] (poderes administrativos tales como establecer actividad)
+            - **Moderator** [3] (capacidad para bloquear)
+            - **Supporter** [2] (acceso a las funciones básicas de soporte)
+            - **Regular** [1] (interacciones más básicas como help y about)
+        
+        Para establecer permisos, consulte `{prefix}help permissions add`; y cambiar el nivel de permiso para
+        comandos ver `{prefix}help permissions override`.
 
-        By default, owner is set to the absolute bot owner and regular is `@everyone`.
-
-        To set permissions, see `{prefix}help permissions add`; and to change permission level for specific
-        commands see `{prefix}help permissions override`.
-
-        Note: You will still have to manually give/take permission to the Modmail
-        category to users/roles.
+        Nota: Aún tendrá que otorgar permiso manualmente a la categoría de RequiemSupport a usuarios/roles.
         """
         await ctx.send_help(ctx.command)
 
@@ -1115,19 +1106,17 @@ class Utility(commands.Cog):
     @checks.has_permissions(PermissionLevel.OWNER)
     async def permissions_override(self, ctx, command_name: str.lower, *, level_name: str):
         """
-        Change a permission level for a specific command.
+        Cambiar un nivel de permiso para un comando específico.
 
-        Examples:
+        Ejemplo:
         - `{prefix}perms override reply administrator`
-        - `{prefix}perms override "plugin enabled" moderator`
 
-        To undo a permission override, see `{prefix}help permissions remove`.
+        Para deshacer una anulación de permiso, consulte `{prefix}help permissions remove`.
 
-        Example:
+        Ejemplo:
         - `{prefix}perms remove override reply`
-        - `{prefix}perms remove override plugin enabled`
 
-        You can retrieve a single or all command level override(s), see`{prefix}help permissions get`.
+        Puede obtener una o todas las anulaciones de nivel de comando, consulte `{prefix}help permissions get`.
         """
 
         command = self.bot.get_command(command_name)
@@ -1174,18 +1163,17 @@ class Utility(commands.Cog):
         user_or_role: Union[discord.Role, utils.User, str],
     ):
         """
-        Add a permission to a command or a permission level.
+        Agregue un permiso a un comando o un nivel de permiso.
 
-        For sub commands, wrap the complete command name with quotes.
-        To find a list of permission levels, see `{prefix}help perms`.
+        Para los subcomandos, envuelva el nombre completo del comando entre comillas.
+        Para encontrar una lista de niveles de permisos, consulte `{prefix}help perms`.
 
-        Examples:
+        Ejemplos:
         - `{prefix}perms add level REGULAR everyone`
-        - `{prefix}perms add command reply @user`
-        - `{prefix}perms add command "plugin enabled" @role`
+        - `{prefix}perms add command reply @usuario`
         - `{prefix}perms add command help 984301093849028`
 
-        Do not ping `@everyone` for granting permission to everyone, use "everyone" or "all" instead.
+        No hagas ping `@everyone` para otorgar permiso a todos, use "everyone" o "all".
         """
 
         if type_ not in {"command", "level"}:
@@ -1248,20 +1236,19 @@ class Utility(commands.Cog):
         user_or_role: Union[discord.Role, utils.User, str] = None,
     ):
         """
-        Remove permission to use a command, permission level, or command level override.
+        Quite el permiso para usar un comando, nivel de permiso o anulación de nivel de comando.
 
-        For sub commands, wrap the complete command name with quotes.
-        To find a list of permission levels, see `{prefix}help perms`.
+        Para los subcomandos, envuelva el nombre completo del comando entre comillas.
+        Para encontrar una lista de niveles de permisos, consulte `{prefix}help perms`.
 
-        Examples:
+        Ejemplos:
         - `{prefix}perms remove level REGULAR everyone`
         - `{prefix}perms remove command reply @user`
-        - `{prefix}perms remove command "plugin enabled" @role`
         - `{prefix}perms remove command help 984301093849028`
         - `{prefix}perms remove override block`
         - `{prefix}perms remove override "snippet add"`
 
-        Do not ping `@everyone` for granting permission to everyone, use "everyone" or "all" instead.
+        No hagas ping `@everyone` para otorgar permiso a todos, use "everyone" o "all".
         """
         if type_ not in {"command", "level", "override"} or (
             type_ != "override" and user_or_role is None
@@ -1380,30 +1367,29 @@ class Utility(commands.Cog):
         self, ctx, user_or_role: Union[discord.Role, utils.User, str], *, name: str = None
     ):
         """
-        View the currently-set permissions.
+        Ver los permisos establecidos actualmente.
 
-        To find a list of permission levels, see `{prefix}help perms`.
+        Para encontrar una lista de niveles de permisos, consulte `{prefix}help perms`.
 
-        To view all command and level permissions:
-
-        Examples:
+        Para ver todos los permisos de nivel y comando:
+        
+        Ejemplos:
         - `{prefix}perms get @user`
         - `{prefix}perms get 984301093849028`
 
-        To view all users and roles of a command or level permission:
+        Para ver todos los usuarios y roles de un comando o permiso de nivel:
 
-        Examples:
+        Ejemplos:
         - `{prefix}perms get command reply`
-        - `{prefix}perms get command plugin remove`
         - `{prefix}perms get level SUPPORTER`
 
-        To view command level overrides:
+        Para ver anulaciones de nivel de comando:
 
         Examples:
         - `{prefix}perms get override block`
         - `{prefix}perms get override permissions add`
 
-        Do not ping `@everyone` for granting permission to everyone, use "everyone" or "all" instead.
+        No hagas ping `@everyone` para otorgar permiso a todos, use "everyone" o "all".
         """
 
         if name is None and user_or_role not in {"command", "level", "override"}:
@@ -1557,9 +1543,7 @@ class Utility(commands.Cog):
     @checks.has_permissions(PermissionLevel.OWNER)
     async def oauth(self, ctx):
         """
-        Commands relating to logviewer oauth2 login authentication.
-
-        This functionality on your logviewer site is a [**Patron**](https://patreon.com/kyber) only feature.
+        Comandos relacionados con la autenticación de inicio de sesión Registro RequiemSupport oauth2.
         """
         await ctx.send_help(ctx.command)
 
@@ -1567,9 +1551,9 @@ class Utility(commands.Cog):
     @checks.has_permissions(PermissionLevel.OWNER)
     async def oauth_whitelist(self, ctx, target: Union[discord.Role, utils.User]):
         """
-        Whitelist or un-whitelist a user or role to have access to logs.
+        Incluya o elimine la lista blanca de un usuario o rol para tener acceso a los registros.
 
-        `target` may be a role ID, name, mention, user ID, name, or mention.
+        `target` puede ser la ID de un rol, nombre, mención, ID de usuario, nombre o mención.
         """
         whitelisted = self.bot.config["oauth_whitelist"]
 
