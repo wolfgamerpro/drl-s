@@ -291,7 +291,7 @@ class Soporte(commands.Cog):
     async def send_scheduled_close_message(self, ctx, after, silent=False):
         human_delta = human_timedelta(after.dt)
 
-        silent = "*silently* " if silent else ""
+        silent = "*silenciado* " if silent else ""
 
         embed = discord.Embed(
             title="Cierre programado",
@@ -307,10 +307,10 @@ class Soporte(commands.Cog):
 
         await ctx.send(embed=embed)
 
-    @commands.command(usage="[after] [close message]")
+    @commands.command(usage="[tiempo] [mensaje de cierre]")
     @checks.has_permissions(PermissionLevel.SUPPORTER)
     @checks.thread_only()
-    async def close(self, ctx, *, tiempo: UserFriendlyTime = None):
+    async def close(self, ctx, *, after: UserFriendlyTime = None):
         """
         Cierra el ticket actual.
         Cerrar después de un período de tiempo:
