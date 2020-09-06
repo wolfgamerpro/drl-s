@@ -1,63 +1,63 @@
 {
   "twitch_url": {
-    "default": "`https://www.twitch.tv/discordmodmail/`",
-    "description": "This channel dictates the linked Twitch channel when the activity is set to \"Streaming\".",
+    "default": "`https://www.twitch.tv/lucasbra_98`",
+    "description": "Este canal dicta el canal de Twitch vinculado cuando la actividad se establece en \"Streaming\".",
     "examples": [
-      "`{prefix}config set twitch_url https://www.twitch.tv/yourchannelname/`"
+      "`{prefix}config set twitch_url https://www.twitch.tv/TuCanal/`"
     ],
     "notes": [
-      "This has no effect when the activity is not set to \"Streaming\".",
-      "See also: `{prefix}help activity`."
+      "Esto no tiene ningún efecto cuando la actividad no está configurada en \"Streaming\".",
+      "Ver también: `{prefix}help activity`."
     ]
   },
   "main_category_id": {
-    "default": "`Modmail` (created with `{prefix}setup`)",
-    "description": "This is the category where all new threads will be created.\n\nTo change the Modmail category, you will need to find the [category’s ID](https://support.discordapp.com/hc/en-us/articles/206346498).",
+    "default": "`RequiemSupport` (creado con `{prefix}setup`)",
+    "description": "Esta es la categoría donde se crearán todos los tickets nuevos.\n\nPara cambiar la categoría de RequiemSupport, deberá encontrar el [ID de la categoría](https://support.discordapp.com/hc/en-us/articles/206346498).",
     "examples": [
-      "`{prefix}config set main_category_id 9234932582312` (`9234932582312` is the category ID)"
+      "`{prefix}config set main_category_id 9234932582312` (`9234932582312` es el ID de categoría)"
     ],
     "notes": [
-      "If the Modmail category ended up being non-existent/invalid, Modmail will break. To fix this, run `{prefix}setup` again or set `main_category_id` to a valid category.",
-      "When the Modmail category is full, new channels will be created in the fallback category.",
-      "See also: `fallback_category_id`."
+      "Si la categoría de RequiemSupport es inexistente/inválida, RequiemSupport se romperá. Para arreglar esto, ejecute `{prefix}setup` de nuevo o establece `main_category_id` a una categoría válida.",
+      "Cuando la categoría de RequiemPlus esté llena, se crearán nuevos canales en la categoría de reserva.",
+      "Ver también: `fallback_category_id`."
     ]
   },
   "fallback_category_id": {
-    "default": "`Fallback Modmail` (created when the main category is full)",
-    "description": "This is the category that will hold the threads when the main category is full.\n\nTo change the Fallback category, you will need to find the [category’s ID](https://support.discordapp.com/hc/en-us/articles/206346498).",
+    "default": "`Fallback RequiemSupport` (creado cuando la categoría principal está llena)",
+    "description": "Esta es la categoría que contendrá los hilos cuando la categoría principal esté llena.\n\nPara cambiar la categoría de reserva, deberá encontrar la [ID de la categoría](https://support.discordapp.com/hc/en-us/articles/206346498).",
     "examples": [
-      "`{prefix}config set fallback_category_id 9234932582312` (`9234932582312` is the category ID)"
+      "`{prefix}config set fallback_category_id 9234932582312` (`9234932582312` es la ID de la categoría)"
     ],
     "notes": [
-      "If the Fallback category ended up being non-existent/invalid, Modmail will create a new one. To fix this, set `fallback_category_id` to a valid category.",
-      "See also: `main_category_id`."
+      "Si la categoría de reserva terminó siendo inexistente/inválida, RequiemSupport creará una nueva. Para solucionar esto, establezca `fallback_category_id` en una categoría válida.",
+      "Ver también: `main_category_id`."
     ]
   },
   "prefix": {
     "default": "`?`",
-    "description": "The prefix of the bot.",
+    "description": "El Prefix del bot.",
     "examples": [
       "`{prefix}prefix !`",
       "`{prefix}config set prefix !`"
     ],
     "notes": [
-      "If you forgot the bot prefix, Modmail will always respond to its mention (ping)."
+      "Si olvidó el prefijo del bot, RequiemPlus siempre responderá a su mención (ping)."
     ]
   },
   "mention": {
     "default": "@here",
-    "description": "This is the message above user information for when a new thread is created in the channel.",
+    "description": "Este es el mensaje sobre la información del usuario para cuando se crea un nuevo ticket en el canal.",
     "examples": [
       "`{prefix}config set mention Yo~ Here's a new thread for ya!`",
       "`{prefix}mention Yo~ Here's a new thread for ya!`"
     ],
     "notes": [
-      "Unfortunately, it's not currently possible to disable mention. You do not have to include a mention."
+      "Desafortunadamente, actualmente no es posible deshabilitar la mención. No es necesario incluir una mención."
     ]
   },
   "main_color": {
     "default": "Discord Blurple [#7289DA](https://placehold.it/100/7289da?text=+)",
-    "description": "This is the main color for Modmail (help/about/ping embed messages, subscribe, move, etc.).",
+    "description": "Este es el color principal de RequiemPlus (help/about/ping embed messages, subscribe, move, etc.).",
     "examples": [
       "`{prefix}config set main_color olive green`",
       "`{prefix}config set main_color 12de3a`",
@@ -65,14 +65,13 @@
       "`{prefix}config set main_color fff`"
     ],
     "notes": [
-      "Available color names can be found on [Taki's Blog](https://taaku18.github.io/modmail/colors/).",
-      "See also: `error_color`, `mod_color`, `recipient_color`."
+      "Ver también: `error_color`, `mod_color`, `recipient_color`."
     ],
     "thumbnail": "https://placehold.it/100/7289da?text=+"
   },
   "error_color": {
     "default": "Discord Red [#E74C3C](https://placehold.it/100/e74c3c?text=+)",
-    "description": "This is the color for Modmail when anything goes wrong, unsuccessful commands, or a stern warning.",
+    "description": "Este es el color de RequiemPlus cuando algo sale mal, comandos fallidos o una advertencia severa.",
     "examples": [
       "`{prefix}config set error_color ocean blue`",
       "`{prefix}config set error_color ff1242`",
@@ -80,159 +79,155 @@
       "`{prefix}config set error_color fa1`"
     ],
     "notes": [
-      "Available color names can be found on [Taki's Blog](https://taaku18.github.io/modmail/colors/).",
-      "See also: `main_color`, `mod_color`, `recipient_color`."
+      "Ver también: `main_color`, `mod_color`, `recipient_color`."
     ],
     "thumbnail": "https://placehold.it/100/e74c3c?text=+"
   },
   "user_typing": {
-    "default": "Disabled",
-    "description": "When this is set to `yes`, whenever the recipient user starts to type in their DM channel, the moderator will see “{bot.user.display_name} is typing…” in the thread channel.",
+    "default": "Enabled",
+    "description": "Cuando se establece en `yes`, cada vez que el usuario destinatario comienza a escribir en su canal DM, el moderador verá `{bot.user.display_name} está escribiendo ...` en el canal del ticket.",
     "examples": [
       "`{prefix}config set user_typing yes`",
       "`{prefix}config set user_typing no`"
     ],
     "notes": [
-      "See also: `mod_typing`."
+      "Ver también: `mod_typing`."
     ]
   },
   "mod_typing": {
-    "default": "Disabled",
-    "description": "When this is set to `yes`, whenever a moderator starts to type in the thread channel, the recipient user will see \"{bot.user.display_name} is typing…\" in their DM channel.",
+    "default": "Enabled",
+    "description": "Cuando se establece en `yes`, siempre que un moderador comience a escribir en el canal del ticket, el usuario destinatario verá `{bot.user.display_name} está escribiendo…` en su canal DM.",
     "examples": [
       "`{prefix}config set mod_typing yes`",
       "`{prefix}config set mod_typing no`"
     ],
     "notes": [
-      "See also: `mod_typing`."
+      "Ver también: `mod_typing`."
     ]
   },
   "account_age": {
-    "default": "No age threshold",
-    "description": "The creation date of the recipient user account must be greater than the number of days, hours, minutes or any time-interval specified by this configuration.",
+    "default": "Sin umbral de edad",
+    "description": "La fecha de creación de la cuenta de usuario del destinatario debe ser mayor que el número de días, horas, minutos o cualquier intervalo de tiempo especificado por esta configuración.",
     "examples": [
-      "`{prefix}config set account_age P12DT3H` (stands for 12 days and 3 hours in [ISO-8601 Duration Format](https://en.wikipedia.org/wiki/ISO_8601#Durations))",
-      "`{prefix}config set account_age 3 days and 5 hours` (accepted readable time)"
+      "`{prefix}config set account_age 3 days and 5 hours` (Tiempo de lectura aceptado)"
     ],
     "notes": [
-      "To remove this restriction, do `{prefix}config del account_age`.",
-      "See also: `guild_age`."
+      "Para eliminar esta restricción, haga `{prefix}config del account_age`.",
+      "Ver también: `guild_age`."
     ]
   },
   "guild_age": {
-    "default": "No age threshold",
-    "description": "The join date of the recipient user into this server must be greater than the number of days, hours, minutes or any time-interval specified by this configuration.",
+    "default": "Sin umbral de edad",
+    "description": "La fecha de incorporación del usuario destinatario a este servidor debe ser mayor que el número de días, horas, minutos o cualquier intervalo de tiempo especificado por esta configuración.",
     "examples": [
-      "`{prefix}config set guild_age P12DT3H` (stands for 12 days and 3 hours in [ISO-8601 Duration Format](https://en.wikipedia.org/wiki/ISO_8601#Durations))",
       "`{prefix}config set guild_age 3 days and 5 hours` (accepted readable time)"
     ],
     "notes": [
-      "To remove this restriction, do `{prefix}config del guild_age`.",
-      "See also: `account_age`."
+      "Para eliminar esta restricción, haga `{prefix}config del guild_age`.",
+      "Ver también: `account_age`."
     ]
   },
   "reply_without_command": {
     "default": "Disabled",
-    "description": "Setting this configuration will make all non-command messages sent in the thread channel to be forwarded to the recipient without the need of `{prefix}reply`.",
+    "description": "Establecer esta configuración en `yes` hará que todos los mensajes que no sean de comando enviados en el canal del ticket se reenvíen al destinatario sin la necesidad de `{prefix}reply`.",
     "examples": [
       "`{prefix}config set reply_without_command yes`",
       "`{prefix}config set reply_without_command no`"
     ],
     "notes": [
-      "See also: `anon_reply_without_command`."
+      "Ver también: `anon_reply_without_command`."
     ]
   },
   "anon_reply_without_command": {
     "default": "Disabled",
-    "description": "Setting this configuration will make all non-command messages sent in the thread channel to be anonymously forwarded to the recipient without the need of `{prefix}reply`.",
+    "description": "Establecer esta configuración hará que todos los mensajes que no sean de comando enviados en el canal del ticket se reenvíen de forma anónima al destinatario sin la necesidad de `{prefix}reply`.",
     "examples": [
       "`{prefix}config set anon_reply_without_command yes`",
       "`{prefix}config set anon_reply_without_command no`"
     ],
     "notes": [
-      "See also: `reply_without_command`."
+      "Ver también: `reply_without_command`."
     ]
   },
   "log_channel_id": {
-    "default": "`#bot-logs` (created with `{prefix}setup`)",
-    "description": "This is the channel where all log messages will be sent (ie. thread close message, update message, etc.).\n\nTo change the log channel, you will need to find the [channel’s ID](https://support.discordapp.com/hc/en-us/articles/206346498). The channel doesn’t necessary have to be under the `main_category`.",
+    "default": "`#「📜」┆˹registro˼` (creado por `{prefix}setup`)",
+    "description": "Este es el canal donde se enviarán todos los mensajes de registro (es decir: mensaje de cierre de ticket, mensaje de actualización de ticket, etc.).\n\nPara cambiar el canal de registro, necesitará encontrar el [ID del canal](https://support.discordapp.com/hc/en-us/articles/206346498). No es necesario que el canal esté debajo del `main_category`.",
     "examples": [
-      "`{prefix}config set log_channel_id 9234932582312` (9234932582312 is the channel ID)"
+      "`{prefix}config set log_channel_id 9234932582312` (9234932582312 es la ID del canal)"
     ],
     "notes": [
-      "If the Modmail logging channel ended up being non-existent/invalid, no logs will be sent."
+      "Si el canal de registro de RequiemSupport terminó siendo inexistente/inválido, no se enviarán registros."
     ]
   },
   "sent_emoji": {
     "default": "✅",
-    "description": "This is the emoji added to the message when when a Modmail action is invoked successfully (ie. DM Modmail, edit message, etc.).",
+    "description": "Este es el emoji que se agrega al mensaje cuando se invoca con éxito una acción de RequiemSupport (es decir: DM RequiemSupport, mensajes editados, etc.).",
     "examples": [
       "`{prefix}config set sent_emoji ✨`"
     ],
     "notes": [
-      "You can disable `sent_emoji` with `{prefix}config set sent_emoji disable`.",
-      "Custom/animated emojis are also supported, however, the emoji must be added to the server.",
-      "See also: `blocked_emoji`."
+      "Puedes deshabilitar `sent_emoji` con `{prefix}config set sent_emoji disable`.",
+      "También se admiten emojis personalizados/animados, sin embargo, el emoji debe agregarse al servidor.",
+      "Ver también: `blocked_emoji`."
     ]
   },
   "blocked_emoji": {
     "default": "🚫",
-    "description": "This is the emoji added to the message when when a Modmail action is invoked unsuccessfully (ie. DM Modmail when blocked, failed to reply, etc.).",
+    "description": "Este es el emoji que se agrega al mensaje cuando se invoca una acción de RequiemSupport sin éxito (es decir: DM RequiemSupport cuando esta bloqueado, no pudo responder, etc.).",
     "examples": [
       "`{prefix}config set blocked_emoji 🙅‍`"
     ],
     "notes": [
-      "You can disable `blocked_emoji` with `{prefix}config set blocked_emoji disable`.",
-      "Custom/animated emojis are also supported, however, the emoji must be added to the server.",
-      "See also: `sent_emoji`."
+      "Puedes deshabilitar `blocked_emoji` con `{prefix}config set blocked_emoji disable`.",
+      "También se admiten emojis personalizados/animados, sin embargo, el emoji debe agregarse al servidor.",
+      "Ver también: `sent_emoji`."
     ]
   },
   "close_emoji": {
     "default": "🔒",
-    "description": "This is the emoji the recipient can click to close a thread themselves. The emoji is automatically added to the `thread_creation_response` embed.",
+    "description": "Este es el emoji en el que el destinatario puede hacer clic para cerrar un ticket. El emoji se agrega automáticamente al `thread_creation_response` embed.",
     "examples": [
       "`{prefix}config set close_emoji 👍‍`"
     ],
     "notes": [
-      "This will only have an effect when `recipient_thread_close` is enabled.",
-      "See also: `recipient_thread_close`."
+      "Esto solo tendrá efecto cuando `recipient_thread_close` esta activado.",
+      "Ver también: `recipient_thread_close`."
     ]
   },
   "recipient_thread_close": {
     "default": "Disabled",
-    "description": "Setting this configuration will allow recipients to use the `close_emoji` to close the thread themselves.",
+    "description": "Establecer esta configuración permitirá a los destinatarios utilizar la `close_emoji` para cerrar el ticket ellos mismos.",
     "examples": [
       "`{prefix}config set recipient_thread_close yes`",
       "`{prefix}config set recipient_thread_close no`"
     ],
     "notes": [
-      "The close emoji is dictated by the configuration `close_emoji`.",
-      "See also: `close_emoji`."
+      "El emoji cerrado viene dictado por la configuración `close_emoji`.",
+      "Ver también: `close_emoji`."
     ]
   },
   "thread_auto_close_silently": {
     "default": "No",
-    "description": "Setting this configuration will close silently when the thread auto-closes.",
+    "description": "Establecer esta configuración en `yes` cerrará silenciosamente cuando el ticket se cierre automáticamente.",
     "examples": [
       "`{prefix}config set thread_auto_close_silently yes`",
       "`{prefix}config set thread_auto_close_silently no`"
     ],
     "notes": [
-      "This will only have an effect when `thread_auto_close` is set.",
-      "See also: `thread_auto_close`."
+      "Esto solo tendrá efecto cuando `thread_auto_close` esta colocado.",
+      "Ver también: `thread_auto_close`."
     ]
   },
   "thread_auto_close": {
     "default": "Never",
-    "description": "Setting this configuration will close threads automatically after the number of days, hours, minutes or any time-interval specified by this configuration.",
+    "description": "Establecer esta configuración cerrará los ticket automáticamente después del número de días, horas, minutos o cualquier intervalo de tiempo especificado por esta configuración.",
     "examples": [
-      "`{prefix}config set thread_auto_close P12DT3H` (stands for 12 days and 3 hours in [ISO-8601 Duration Format](https://en.wikipedia.org/wiki/ISO_8601#Durations))",
-      "`{prefix}config set thread_auto_close 3 days and 5 hours` (accepted readable time)"
+      "`{prefix}config set thread_auto_close 3 days and 5 hours` (Tiempo de lectura aceptado)"
     ],
     "notes": [
-      "To disable auto close, do `{prefix}config del thread_auto_close`.",
-      "To prevent a thread from auto-closing, do `{prefix}close cancel`.",
-      "See also: `thread_auto_close_silently`, `thread_auto_close_response`."
+      "Para deshabilitar el cierre automático, haga `{prefix}config del thread_auto_close`.",
+      "Para evitar que un ticket se cierre automáticamente, haga `{prefix}close cancel`.",
+      "Ver también: `thread_auto_close_silently`, `thread_auto_close_response`."
     ]
   },
   "thread_cooldown": {
