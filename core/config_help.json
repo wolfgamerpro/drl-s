@@ -366,74 +366,74 @@
     ]
   },
   "disabled_new_thread_title": {
-    "default": "No entregado.",
-    "description": "El título del mensaje se inserta cuando la creación de un nuevo ticket de RequiemSupport está deshabilitada y el usuario intenta crear un nuevo ticket.",
+    "default": "Not Delivered.",
+    "description": "The title of the message embed when Modmail new thread creation is disabled and user tries to create a new thread.",
     "examples": [
-      "`{prefix}config set disabled_new_thread_title Cerrado`"
+      "`{prefix}config set disabled_new_thread_title Closed`"
     ],
     "notes": [
-      "Solo tiene efecto cuando `{prefix}disable` o `{prefix}disable all` esta colocado.",
-      "Ver también: `disabled_new_thread_response`, `disabled_new_thread_footer`, `disabled_current_thread_title`."
+      "Only has an effect when `{prefix}disable` or `{prefix}disable all` is set.",
+      "See also: `disabled_new_thread_response`, `disabled_new_thread_footer`, `disabled_current_thread_title`."
     ]
   },
   "disabled_new_thread_response": {
-    "default": "No aceptamos nuevos tickets.",
-    "description": "El cuerpo del mensaje se incrusta cuando RequiemSupport está deshabilitada la creación de un nuevo ticket y el usuario intenta crear un nuevo ticket.",
+    "default": "We are not accepting new threads.",
+    "description": "The body of the message embed when Modmail new thread creation is disabled and user tries to create a new thread.",
     "examples": [
-      "`{prefix}config set disabled_new_thread_response Nuestro horario de trabajo es entre 8am - 6pm.`"
+      "`{prefix}config set disabled_new_thread_response Our working hours is between 8am - 6pm EST.`"
     ],
     "notes": [
-      "Solo tiene efecto cuando `{prefix}disable` or `{prefix}disable all` esta colocado.",
-      "Ver también: `disabled_new_thread_title`, `disabled_new_thread_footer`, `disabled_current_thread_response`."
+      "Only has an effect when `{prefix}disable` or `{prefix}disable all` is set.",
+      "See also: `disabled_new_thread_title`, `disabled_new_thread_footer`, `disabled_current_thread_response`."
     ]
   },
   "disabled_new_thread_footer": {
-    "default": "Por favor, inténtelo de nuevo más tarde...",
-    "description": "El pie de página del mensaje se incrusta cuando RequiemSupport está deshabilitada la creación de un nuevo ticket y el usuario intenta crear un nuevo ticket.",
+    "default": "Please try again later...",
+    "description": "The footer of the message embed when Modmail new thread creation is disabled and user tries to create a new thread.",
     "examples": [
-      "`{prefix}config set disabled_new_thread_footer Contáctanos más tarde`"
+      "`{prefix}config set disabled_new_thread_footer Contact us later`"
     ],
     "notes": [
-      "Solo tiene efecto cuando `{prefix}disable` or `{prefix}disable all` esta colocado.",
-      "Ver también: `disabled_new_thread_title`, `disabled_new_thread_response`, `disabled_current_thread_footer`."
+      "Only has an effect when `{prefix}disable` or `{prefix}disable all` is set.",
+      "See also: `disabled_new_thread_title`, `disabled_new_thread_response`, `disabled_current_thread_footer`."
     ]
   },
   "disabled_current_thread_title": {
-    "default": "No entregado.",
-    "description": "El título del mensaje se incrusta cuando RequiemSupport DM está deshabilitado y el usuario envía un mensaje directo a RequiemSupport desde el ticket existente.",
+    "default": "Not Delivered.",
+    "description": "The title of the message embed when Modmail DM is disabled and user DMs Modmail from existing thread.",
     "examples": [
-      "`{prefix}config set disabled_current_thread_title Indisponible`"
+      "`{prefix}config set disabled_current_thread_title Unavailable`"
     ],
     "notes": [
-      "Solo tiene efecto cuando `{prefix}disable all` esta colocado.",
-      "Ver también: `disabled_current_thread_response`, `disabled_current_thread_footer`, `disabled_new_thread_title`."
+      "Only has an effect when `{prefix}disable all` is set.",
+      "See also: `disabled_current_thread_response`, `disabled_current_thread_footer`, `disabled_new_thread_title`."
     ]
   },
   "disabled_current_thread_response": {
-    "default": "No aceptamos ningún mensaje.",
-    "description": "El cuerpo del mensaje se incrusta cuando RequiemSupport DM está deshabilitado y el usuario DM requiere RequiemSupport desde el ticket existente.",
+    "default": "We are not accepting any messages.",
+    "description": "The body of the message embed when Modmail DM is disabled and user DMs Modmail from existing thread.",
     "examples": [
-      "`{prefix}config set disabled_current_thread_response En descanso ahora mismo.`"
+      "`{prefix}config set disabled_current_thread_response On break right now.`"
     ],
     "notes": [
-      "Solo tiene efecto cuando `{prefix}disable all` esta colocado.",
-      "Ver también: `disabled_current_thread_title`, `disabled_current_thread_footer`, `disabled_new_thread_response`."
+      "Only has an effect when `{prefix}disable all` is set.",
+      "See also: `disabled_current_thread_title`, `disabled_current_thread_footer`, `disabled_new_thread_response`."
     ]
   },
   "disabled_current_thread_footer": {
-    "default": "Por favor, inténtelo de nuevo más tarde...",
-    "description": "El pie de página del mensaje se inserta cuando RequiemSupport DM está deshabilitado y el usuario DM requiere RequiemSupport desde el ticket existente.",
+    "default": "Please try again later...",
+    "description": "The footer of the message embed when Modmail DM is disabled and user DMs Modmail from existing thread.",
     "examples": [
-      "`{prefix}config set disabled_current_thread_footer Mensaje de regreso!`"
+      "`{prefix}config set disabled_current_thread_footer Message back!`"
     ],
     "notes": [
-      "Solo tiene efecto cuando `{prefix}disable all` esta colocado.",
-      "Ver también: `disabled_current_thread_title`, `disabled_current_thread_response`, `disabled_new_thread_footer`."
+      "Only has an effect when `{prefix}disable all` is set.",
+      "See also: `disabled_current_thread_title`, `disabled_current_thread_response`, `disabled_new_thread_footer`."
     ]
   },
   "recipient_color": {
     "default": "Discord Gold [#F1C40F](https://placehold.it/100/f1c40f?text=+)",
-    "description": "Este es el color de los mensajes enviados por el destinatario, esto se aplica a los mensajes recibidos en el canal del ticket.",
+    "description": "This is the color of the messages sent by the recipient, this applies to messages received in the thread channel.",
     "examples": [
       "`{prefix}config set recipient_color dark beige`",
       "`{prefix}config set recipient_color cb7723`",
@@ -441,7 +441,8 @@
       "`{prefix}config set recipient_color c4k`"
     ],
     "notes": [
-      "Ver también: `mod_color`, `main_color`, `error_color`."
+      "Available color names can be found on [Taki's Blog](https://taaku18.github.io/modmail/colors/).",
+      "See also: `mod_color`, `main_color`, `error_color`."
     ],
     "thumbnail": "https://placehold.it/100/f1c40f?text=+"
   },
@@ -504,84 +505,84 @@
     "image": "https://i.imgur.com/SKOC42Z.png"
   },
   "modmail_guild_id": {
-    "default": "Recurrir a `GUILD_ID`",
-    "description": "El ID del servidor de discord donde se deben crear los canales de ticket (servidor de recepción).",
+    "default": "Fallback on `GUILD_ID`",
+    "description": "The ID of the discord server where the threads channels should be created (receiving server).",
     "examples": [
     ],
     "notes": [
-      "Esta configuración solo se puede establecer mediante el archivo `.env` o variables de entorno (config)."
+      "This configuration can only to be set through `.env` file or environment (config) variables."
     ]
   },
   "guild_id": {
     "default": "None, required",
-    "description": "El ID del servidor de discord donde residen los usuarios destinatarios (servidor de discord).",
+    "description": "The ID of the discord server where recipient users reside (users server).",
     "examples": [
     ],
     "notes": [
-      "Esta configuración solo se puede establecer mediante el archivo `.env` o variables de entorno (config)."
+      "This configuration can only to be set through `.env` file or environment (config) variables."
     ]
   },
   "log_url": {
     "default": "https://example.com/",
-    "description": "El enlace de la URL del registro, déjelo como está para no establecer un registro.",
+    "description": "The base log viewer URL link, leave this as-is to not configure a log viewer.",
     "examples": [
     ],
     "notes": [
-      "Esta configuración solo se puede establecer mediante el archivo `.env` o variables de entorno (config)."
+      "This configuration can only to be set through `.env` file or environment (config) variables."
     ]
   },
   "log_url_prefix": {
     "default": "`/logs`",
-    "description": "La ruta del registro que se extiende desde su `LOG_URL`, establecer esto en `/` para no especificar una ruta adicional al registro.",
+    "description": "The path to your log viewer extending from your `LOG_URL`, set this to `/` to specify no extra path to the log viewer.",
     "examples": [
     ],
     "notes": [
-      "Esta configuración solo se puede establecer mediante el archivo `.env` o variables de entorno (config)."
+      "This configuration can only to be set through `.env` file or environment (config) variables."
     ]
   },
   "mongo_uri": {
     "default": "None, required",
-    "description": "Una cadena de conexión de MongoDB.",
+    "description": "A MongoDB connection string.",
     "examples": [
     ],
     "notes": [
-      "Esta configuración solo se puede establecer mediante el archivo `.env` o variables de entorno (config)."
+      "This configuration can only to be set through `.env` file or environment (config) variables."
     ]
   },
   "owners": {
     "default": "None, required",
-    "description": "Una lista de propietarios del bot definidos, utilice `{prefix}perms add level OWNER @user` para establecer propietarios de bots flexibles.",
+    "description": "A list of definite bot owners, use `{prefix}perms add level OWNER @user` to set flexible bot owners.",
     "examples": [
     ],
     "notes": [
-      "Esta configuración solo se puede establecer mediante el archivo `.env` o variables de entorno (config)."
+      "This configuration can only to be set through `.env` file or environment (config) variables."
     ]
   },
   "token": {
     "default": "None, required",
-    "description": "Su token de bot como se encuentra en el portal de desarrolladores de Discord.",
+    "description": "Your bot token as found in the Discord Developer Portal.",
     "examples": [
     ],
     "notes": [
-      "Esta configuración solo se puede establecer mediante el archivo `.env` o variables de entorno (config)."
+      "This configuration can only to be set through `.env` file or environment (config) variables."
     ]
   },
   "log_level": {
     "default": "INFO",
-    "description": "El nivel de registro para iniciar sesión en stdout.",
+    "description": "The logging level for logging to stdout.",
     "examples": [
     ],
     "notes": [
-      "Esta configuración solo se puede establecer mediante el archivo `.env` o variables de entorno (config)."
+      "This configuration can only to be set through `.env` file or environment (config) variables."
     ]
   },
   "enable_plugins": {
     "default": "Yes",
-    "description": "Si los complementos deben habilitarse y cargarse en RequiemSupport.",
+    "description": "Whether plugins should be enabled and loaded into Modmail.",
     "examples": [
     ],
     "notes": [
-      "Esta configuración solo se puede establecer mediante el archivo `.env` o variables de entorno (config)."
+      "This configuration can only to be set through `.env` file or environment (config) variables."
     ]
   }
 }
