@@ -241,7 +241,7 @@
     ]
   },
   "thread_auto_close_response": {
-    "default": "\"Este ticket se ha cerrado automáticamente debido a la inactividad después de {{timeout}}.\"",
+    "default": "Este ticket se ha cerrado automáticamente debido a la inactividad después de {{timeout}}.",
     "description": "Este es el mensaje que se muestra cuando el ticket se cierra automáticamente.",
     "examples": [
       "`{prefix}config set thread_auto_close_response Tu mensaje de cerrado aquí.`"
@@ -253,7 +253,7 @@
     ]
   },
   "thread_creation_response": {
-    "default": "\"El equipo de personal se comunicará con usted lo antes posible.\"",
+    "default": "El equipo de personal se comunicará con usted lo antes posible.",
     "description": "Este es el contenido del mensaje que se envía al destinatario tras la creación de un nuevo ticket.",
     "examples": [
       "`{prefix}config set thread_creation_response Nos comunicaremos con usted en breve.`"
@@ -264,7 +264,7 @@
     ]
   },
   "thread_creation_footer": {
-    "default": "\"Tu mensaje ha sido enviado\"",
+    "default": "Tu mensaje ha sido enviado",
     "description": "Este es el pie de página del mensaje que se envía al destinatario cuando se crea un nuevo ticket.",
     "examples": [
       "`{prefix}config set thread_creation_footer Por favor espera ...`"
@@ -275,7 +275,7 @@
     ]
   },
   "thread_self_closable_creation_footer": {
-    "default": "\"Haga clic en el candado para cerrar el ticket\"",
+    "default": "Haga clic en el candado para cerrar el ticket",
     "description": "Este es el pie de página del mensaje que se envía al destinatario cuando se crea un nuevo ticket.",
     "examples": [
       "`{prefix}config set thread_self_closable_creation_footer Por favor espera ...`"
@@ -286,7 +286,7 @@
     ]
   },
   "thread_creation_title": {
-    "default": "\"Ticket Creado\"",
+    "default": "Ticket Creado",
     "description": "Este es el título del mensaje que se envía al destinatario cuando se crea un nuevo ticket.",
     "examples": [
       "`{prefix}config set thread_creation_title Hola!`"
@@ -296,7 +296,7 @@
     ]
   },
   "thread_close_footer": {
-    "default": "\"Responder creará un nuevo ticket\"",
+    "default": "Responder creará un nuevo ticket",
     "description": "Este es el pie de página del mensaje que se envía al destinatario cuando se cierra un ticket.",
     "examples": [
       "`{prefix}config set thread_close_footer Adíos!`"
@@ -306,7 +306,7 @@
     ]
   },
   "thread_close_title": {
-    "default": "\"Ticket Cerrado\"",
+    "default": "Ticket Cerrado",
     "description": "Este es el título de inserción del mensaje que se envía al destinatario tras el cierre de un ticket.",
     "examples": [
       "`{prefix}config set thread_close_title Adíos!`"
@@ -316,124 +316,124 @@
     ]
   },
   "thread_close_response": {
-    "default": "\"{{closer.mention}} has closed this Modmail thread\"",
-    "description": "This is the message embed content sent to the recipient upon the closure of a thread.",
+    "default": "{{closer.mention}} ha cerrado este ticket de RequiemSupport",
+    "description": "Este es el contenido del mensaje que se envía al destinatario al cerrar un ticket.",
     "examples": [
-      "`{prefix}config set thread_close_response Your message is appreciated!`"
+      "`{prefix}config set thread_close_response ¡Se agradece su mensaje!`"
     ],
     "notes": [
-      "When `recipient_thread_close` is enabled and the recipient closed their own thread, `thread_self_close_response` is used instead of this configuration.",
-      "You may use the `{{closer}}` variable for access to the [Member](https://discordpy.readthedocs.io/en/latest/api.html#discord.Member) that closed the thread.",
-      "`{{loglink}}` can be used as a placeholder substitute for the full URL linked to the thread in the log viewer and `{{loglink}}` for the unique key (ie. s3kf91a) of the log.",
-      "Discord flavoured markdown is fully supported in `thread_close_response`.",
-      "See also: `thread_close_title`, `thread_close_footer`, `thread_self_close_response`, `thread_creation_response`."
+      "Cuando `recipient_thread_close` está habilitado y el destinatario cerró su propio ticket, `thread_self_close_response` se utiliza en lugar de esta configuración.",
+      "Puede utilizar el `{{closer}}` variable para acceder al [miembro](https://discordpy.readthedocs.io/en/latest/api.html#discord.Member) que cerró el ticket.",
+      "`{{loglink}}` se puede utilizar como un sustituto de marcador de posición para la URL al ticket en el visor de registros y `{{loglink}}` por la clave única (ejemplo: s3kf91a) del registro.",
+      "Discord markdown es totalmente compatible con `thread_close_response`.",
+      "Ver también: `thread_close_title`, `thread_close_footer`, `thread_self_close_response`, `thread_creation_response`."
     ]
   },
   "thread_self_close_response": {
-    "default": "\"You have closed this Modmail thread.\"",
+    "default": "You have closed this RequiemSupport thread.",
     "description": "This is the message embed content sent to the recipient upon the closure of a their own thread.",
     "examples": [
-      "`{prefix}config set thread_self_close_response You have closed your own thread...`"
+      "`{prefix}config set thread_self_close_response Has cerrado tu propio ticket...`"
     ],
     "notes": [
-      "When `recipient_thread_close` is disabled or the thread wasn't closed by the recipient, `thread_close_response` is used instead of this configuration.",
-      "You may use the `{{closer}}` variable for access to the [Member](https://discordpy.readthedocs.io/en/latest/api.html#discord.Member) that closed the thread.",
-      "`{{loglink}}` can be used as a placeholder substitute for the full URL linked to the thread in the log viewer and `{{loglink}}` for the unique key (ie. s3kf91a) of the log.",
-      "Discord flavoured markdown is fully supported in `thread_self_close_response`.",
-      "See also: `thread_close_title`, `thread_close_footer`, `thread_close_response`."
+      "When `recipient_thread_close` está deshabilitado o el destinatario no cerró el ticket, `thread_close_response` se utiliza en lugar de esta configuración.",
+      "Puede utilizar el `{{closer}}` variable para acceder al [miembro](https://discordpy.readthedocs.io/en/latest/api.html#discord.Member) that closed the thread.",
+      "`{{loglink}}` se puede utilizar como un sustituto de marcador de posición para la URL al ticket en el visor de registros y `{{loglink}}` por la clave única (ejemplo: s3kf91a) del registro.",
+      "Discord markdown es totalmente compatible con `thread_self_close_response`.",
+      "Ver también: `thread_close_title`, `thread_close_footer`, `thread_close_response`."
     ]
   },
   "thread_move_notify": {
     "default": "No",
-    "description": "Notify the recipient if the thread was moved.",
+    "description": "Notifique al destinatario si se movió el ticket.",
     "examples": [
       "`{prefix}config set thread_move_notify yes`",
       "`{prefix}config set thread_move_notify no`"
     ],
     "notes": [
-      "See also: `thread_move_response`."
+      "Ver también: `thread_move_response`."
     ]
   },
   "thread_move_response": {
-    "default": "This thread has been moved.",
-    "description": "This is the message to display to the user when the thread is moved.",
+    "default": "Este ticket se ha movido.",
+    "description": "Este es el mensaje que se muestra al usuario cuando se mueve el ticket.",
     "examples": [
-      "`{prefix}config set thread_move_response This thread has been moved to another category for review!`"
+      "`{prefix}config set thread_move_response Este ticket se ha movido a otra categoría para su revisión.`"
     ],
     "notes": [
-      "Only has an effect when `thread_move_notify` is on.",
-      "See also: `thread_move_notify`."
+      "Solo tiene efecto cuando `thread_move_notify` esta activado.",
+      "Ver también: `thread_move_notify`."
     ]
   },
   "disabled_new_thread_title": {
-    "default": "Not Delivered.",
-    "description": "The title of the message embed when Modmail new thread creation is disabled and user tries to create a new thread.",
+    "default": "No entregado.",
+    "description": "El título del mensaje se inserta cuando la creación de un nuevo ticket de RequiemSupport está deshabilitada y el usuario intenta crear un nuevo ticket.",
     "examples": [
-      "`{prefix}config set disabled_new_thread_title Closed`"
+      "`{prefix}config set disabled_new_thread_title Cerrado`"
     ],
     "notes": [
-      "Only has an effect when `{prefix}disable` or `{prefix}disable all` is set.",
-      "See also: `disabled_new_thread_response`, `disabled_new_thread_footer`, `disabled_current_thread_title`."
+      "Solo tiene efecto cuando `{prefix}disable` o `{prefix}disable all` esta colocado.",
+      "Ver también: `disabled_new_thread_response`, `disabled_new_thread_footer`, `disabled_current_thread_title`."
     ]
   },
   "disabled_new_thread_response": {
-    "default": "We are not accepting new threads.",
-    "description": "The body of the message embed when Modmail new thread creation is disabled and user tries to create a new thread.",
+    "default": "No aceptamos nuevos tickets.",
+    "description": "El cuerpo del mensaje se incrusta cuando RequiemSupport está deshabilitada la creación de un nuevo ticket y el usuario intenta crear un nuevo ticket.",
     "examples": [
-      "`{prefix}config set disabled_new_thread_response Our working hours is between 8am - 6pm EST.`"
+      "`{prefix}config set disabled_new_thread_response Nuestro horario de trabajo es entre 8am - 6pm.`"
     ],
     "notes": [
-      "Only has an effect when `{prefix}disable` or `{prefix}disable all` is set.",
-      "See also: `disabled_new_thread_title`, `disabled_new_thread_footer`, `disabled_current_thread_response`."
+      "Solo tiene efecto cuando `{prefix}disable` or `{prefix}disable all` esta colocado.",
+      "Ver también: `disabled_new_thread_title`, `disabled_new_thread_footer`, `disabled_current_thread_response`."
     ]
   },
   "disabled_new_thread_footer": {
-    "default": "Please try again later...",
-    "description": "The footer of the message embed when Modmail new thread creation is disabled and user tries to create a new thread.",
+    "default": "Por favor, inténtelo de nuevo más tarde...",
+    "description": "El pie de página del mensaje se incrusta cuando RequiemSupport está deshabilitada la creación de un nuevo ticket y el usuario intenta crear un nuevo ticket.",
     "examples": [
-      "`{prefix}config set disabled_new_thread_footer Contact us later`"
+      "`{prefix}config set disabled_new_thread_footer Contáctanos más tarde`"
     ],
     "notes": [
-      "Only has an effect when `{prefix}disable` or `{prefix}disable all` is set.",
-      "See also: `disabled_new_thread_title`, `disabled_new_thread_response`, `disabled_current_thread_footer`."
+      "Solo tiene efecto cuando `{prefix}disable` or `{prefix}disable all` esta colocado.",
+      "Ver también: `disabled_new_thread_title`, `disabled_new_thread_response`, `disabled_current_thread_footer`."
     ]
   },
   "disabled_current_thread_title": {
-    "default": "Not Delivered.",
-    "description": "The title of the message embed when Modmail DM is disabled and user DMs Modmail from existing thread.",
+    "default": "No entregado.",
+    "description": "El título del mensaje se incrusta cuando RequiemSupport DM está deshabilitado y el usuario envía un mensaje directo a RequiemSupport desde el ticket existente.",
     "examples": [
-      "`{prefix}config set disabled_current_thread_title Unavailable`"
+      "`{prefix}config set disabled_current_thread_title Indisponible`"
     ],
     "notes": [
-      "Only has an effect when `{prefix}disable all` is set.",
-      "See also: `disabled_current_thread_response`, `disabled_current_thread_footer`, `disabled_new_thread_title`."
+      "Solo tiene efecto cuando `{prefix}disable all` esta colocado.",
+      "Ver también: `disabled_current_thread_response`, `disabled_current_thread_footer`, `disabled_new_thread_title`."
     ]
   },
   "disabled_current_thread_response": {
-    "default": "We are not accepting any messages.",
-    "description": "The body of the message embed when Modmail DM is disabled and user DMs Modmail from existing thread.",
+    "default": "No aceptamos ningún mensaje.",
+    "description": "El cuerpo del mensaje se incrusta cuando RequiemSupport DM está deshabilitado y el usuario DM requiere RequiemSupport desde el ticket existente.",
     "examples": [
-      "`{prefix}config set disabled_current_thread_response On break right now.`"
+      "`{prefix}config set disabled_current_thread_response En descanso ahora mismo.`"
     ],
     "notes": [
-      "Only has an effect when `{prefix}disable all` is set.",
-      "See also: `disabled_current_thread_title`, `disabled_current_thread_footer`, `disabled_new_thread_response`."
+      "Solo tiene efecto cuando `{prefix}disable all` esta colocado.",
+      "Ver también: `disabled_current_thread_title`, `disabled_current_thread_footer`, `disabled_new_thread_response`."
     ]
   },
   "disabled_current_thread_footer": {
-    "default": "Please try again later...",
-    "description": "The footer of the message embed when Modmail DM is disabled and user DMs Modmail from existing thread.",
+    "default": "Por favor, inténtelo de nuevo más tarde...",
+    "description": "El pie de página del mensaje se inserta cuando RequiemSupport DM está deshabilitado y el usuario DM requiere RequiemSupport desde el ticket existente.",
     "examples": [
-      "`{prefix}config set disabled_current_thread_footer Message back!`"
+      "`{prefix}config set disabled_current_thread_footer Mensaje de regreso!`"
     ],
     "notes": [
-      "Only has an effect when `{prefix}disable all` is set.",
-      "See also: `disabled_current_thread_title`, `disabled_current_thread_response`, `disabled_new_thread_footer`."
+      "Solo tiene efecto cuando `{prefix}disable all` esta colocado.",
+      "Ver también: `disabled_current_thread_title`, `disabled_current_thread_response`, `disabled_new_thread_footer`."
     ]
   },
   "recipient_color": {
     "default": "Discord Gold [#F1C40F](https://placehold.it/100/f1c40f?text=+)",
-    "description": "This is the color of the messages sent by the recipient, this applies to messages received in the thread channel.",
+    "description": "Este es el color de los mensajes enviados por el destinatario, esto se aplica a los mensajes recibidos en el canal del ticket.",
     "examples": [
       "`{prefix}config set recipient_color dark beige`",
       "`{prefix}config set recipient_color cb7723`",
@@ -441,14 +441,13 @@
       "`{prefix}config set recipient_color c4k`"
     ],
     "notes": [
-      "Available color names can be found on [Taki's Blog](https://taaku18.github.io/modmail/colors/).",
-      "See also: `mod_color`, `main_color`, `error_color`."
+      "Ver también: `mod_color`, `main_color`, `error_color`."
     ],
     "thumbnail": "https://placehold.it/100/f1c40f?text=+"
   },
   "mod_color": {
     "default": "Discord Green [#2ECC71](https://placehold.it/100/2ecc71?text=+)",
-    "description": "This is the color of the messages sent by the moderators, this applies to messages within in the thread channel and the DM thread messages received by the recipient.",
+    "description": "Este es el color de los mensajes enviados por los moderadores, esto se aplica a los mensajes dentro del canal del ticket y los mensajes del ticket DM recibidos por el destinatario.",
     "examples": [
       "`{prefix}config set mod_color dark beige`",
       "`{prefix}config set mod_color cb7723`",
@@ -456,134 +455,124 @@
       "`{prefix}config set mod_color c4k`"
     ],
     "notes": [
-      "Available color names can be found on [Taki's Blog](https://taaku18.github.io/modmail/colors/).",
-      "See also: `recipient_color`, `main_color`, `error_color`."
+      "Ver también: `recipient_color`, `main_color`, `error_color`."
     ],
     "thumbnail": "https://placehold.it/100/2ecc71?text=+"
   },
   "mod_tag": {
-    "default": "The moderator's highest role",
-    "description": "This is the name tag in the “footer” section of the embeds sent by moderators in the recipient DM and thread channel.",
+    "default": "El rol más alto del moderador",
+    "description": "Este es el rol en la sección de "pie de página" enviadas por los moderadores en el DM del destinatario y el canal del hilo.",
     "examples": [
-      "`{prefix}config set mod_tag Moderator`"
+      "`{prefix}config set mod_tag Moderador`"
     ],
     "notes": [
-      "When the message is sent anonymously, `anon_tag` is used instead.",
-      "See also: `anon_tag`."
+      "Cuando el mensaje se envía de forma anónima, `anon_tag` se utiliza en su lugar.",
+      "Ver también: `anon_tag`."
     ]
   },
   "anon_username": {
-    "default": "Fallback on `mod_tag`",
-    "description": "This is the name in the “author” section of the embeds sent by anonymous moderators in the recipient DM.",
+    "default": "Recurrir a `mod_tag`",
+    "description": "Este es el nombre en la sección "autor" enviado por moderadores anónimos en el DM del destinatario.",
     "examples": [
-      "`{prefix}config set anon_username Incognito Mod`"
+      "`{prefix}config set anon_username Mod Incognito`"
     ],
     "notes": [
-      "See also: `anon_avatar_url`, `anon_tag`."
+      "Ver también: `anon_avatar_url`, `anon_tag`."
     ],
     "image": "https://i.imgur.com/SKOC42Z.png"
   },
   "anon_avatar_url": {
     "default": "Server avatar",
-    "description": "This is the avatar of the embeds sent by anonymous moderators in the recipient DM.",
+    "description": "Este es el avatar enviado por moderadores anónimos en el DM del destinatario.",
     "examples": [
-      "`{prefix}config set anon_avatar_url https://path.to/your/avatar.png` (you will need to upload the avatar to somewhere)"
+      "`{prefix}config set anon_avatar_url https://path.to/your/avatar.png` (deberás subir el avatar a algún lugar)"
     ],
     "notes": [
-      "See also: `anon_username`, `anon_tag`."
+      "Ver también: `anon_username`, `anon_tag`."
     ],
     "image": "https://i.imgur.com/SKOC42Z.png"
   },
   "anon_tag": {
-    "default": "\"Response\"",
-    "description": "This is the name tag in the “footer” section of the embeds sent by anonymous moderators in the recipient DM.",
+    "default": "Respuesta",
+    "description": "Esta es la etiqueta de nombre en la sección de "pie de página" enviado por moderadores anónimos en el DM del destinatario.",
     "examples": [
-      "`{prefix}config set anon_tag Support Agent`"
+      "`{prefix}config set anon_tag Miembro de Soporte`"
     ],
     "notes": [
-      "See also: `anon_avatar_url`, `anon_username`, `mod_tag`."
+      "Ver también: `anon_avatar_url`, `anon_username`, `mod_tag`."
     ],
     "image": "https://i.imgur.com/SKOC42Z.png"
   },
   "modmail_guild_id": {
-    "default": "Fallback on `GUILD_ID`",
-    "description": "The ID of the discord server where the threads channels should be created (receiving server).",
+    "default": "Recurrir a `GUILD_ID`",
+    "description": "El ID del servidor de discord donde se deben crear los canales de ticket (servidor de recepción).",
     "examples": [
     ],
     "notes": [
-      "This configuration can only to be set through `.env` file or environment (config) variables."
+      "Esta configuración solo se puede establecer mediante el archivo `.env` o variables de entorno (config)."
     ]
   },
   "guild_id": {
     "default": "None, required",
-    "description": "The ID of the discord server where recipient users reside (users server).",
+    "description": "El ID del servidor de discord donde residen los usuarios destinatarios (servidor de discord).",
     "examples": [
     ],
     "notes": [
-      "This configuration can only to be set through `.env` file or environment (config) variables."
+      "Esta configuración solo se puede establecer mediante el archivo `.env` o variables de entorno (config)."
     ]
   },
   "log_url": {
     "default": "https://example.com/",
-    "description": "The base log viewer URL link, leave this as-is to not configure a log viewer.",
+    "description": "El enlace de la URL del registro, déjelo como está para no establecer un registro.",
     "examples": [
     ],
     "notes": [
-      "This configuration can only to be set through `.env` file or environment (config) variables."
+      "Esta configuración solo se puede establecer mediante el archivo `.env` o variables de entorno (config)."
     ]
   },
   "log_url_prefix": {
     "default": "`/logs`",
-    "description": "The path to your log viewer extending from your `LOG_URL`, set this to `/` to specify no extra path to the log viewer.",
+    "description": "La ruta del registro que se extiende desde su `LOG_URL`, establecer esto en `/` para no especificar una ruta adicional al registro.",
     "examples": [
     ],
     "notes": [
-      "This configuration can only to be set through `.env` file or environment (config) variables."
+      "Esta configuración solo se puede establecer mediante el archivo `.env` o variables de entorno (config)."
     ]
   },
   "mongo_uri": {
     "default": "None, required",
-    "description": "A MongoDB connection string.",
+    "description": "Una cadena de conexión de MongoDB.",
     "examples": [
     ],
     "notes": [
-      "This configuration can only to be set through `.env` file or environment (config) variables."
+      "Esta configuración solo se puede establecer mediante el archivo `.env` o variables de entorno (config)."
     ]
   },
   "owners": {
     "default": "None, required",
-    "description": "A list of definite bot owners, use `{prefix}perms add level OWNER @user` to set flexible bot owners.",
+    "description": "Una lista de propietarios del bot definidos, utilice `{prefix}perms add level OWNER @user` para establecer propietarios de bots flexibles.",
     "examples": [
     ],
     "notes": [
-      "This configuration can only to be set through `.env` file or environment (config) variables."
+      "Esta configuración solo se puede establecer mediante el archivo `.env` o variables de entorno (config)."
     ]
   },
   "token": {
     "default": "None, required",
-    "description": "Your bot token as found in the Discord Developer Portal.",
+    "description": "Su token de bot como se encuentra en el portal de desarrolladores de Discord.",
     "examples": [
     ],
     "notes": [
-      "This configuration can only to be set through `.env` file or environment (config) variables."
+      "Esta configuración solo se puede establecer mediante el archivo `.env` o variables de entorno (config)."
     ]
   },
   "log_level": {
     "default": "INFO",
-    "description": "The logging level for logging to stdout.",
+    "description": "El nivel de registro para iniciar sesión en stdout.",
     "examples": [
     ],
     "notes": [
-      "This configuration can only to be set through `.env` file or environment (config) variables."
-    ]
-  },
-  "enable_plugins": {
-    "default": "Yes",
-    "description": "Whether plugins should be enabled and loaded into Modmail.",
-    "examples": [
-    ],
-    "notes": [
-      "This configuration can only to be set through `.env` file or environment (config) variables."
+      "Esta configuración solo se puede establecer mediante el archivo `.env` o variables de entorno (config)."
     ]
   }
 }
