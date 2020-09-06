@@ -565,7 +565,7 @@ class Soporte(commands.Cog):
 
     @commands.group(invoke_without_command=True)
     @checks.has_permissions(PermissionLevel.SUPPORTER)
-    async def logs(self, ctx, *, Usuario: User = None):
+    async def logs(self, ctx, *, user: User = None):
         """
         Obtener registros de tickets anteriores de un miembro.
         Deje `user` en blanco cuando este comando se utilice dentro de un
@@ -602,7 +602,7 @@ class Soporte(commands.Cog):
 
     @logs.command(name="closed-by", aliases=["closeby"])
     @checks.has_permissions(PermissionLevel.SUPPORTER)
-    async def logs_closed_by(self, ctx, *, Usuario: User = None):
+    async def logs_closed_by(self, ctx, *, user: User = None):
         """
         Obtiene todos los registros cerrados por el usuario especificado.
         Si no se proporciona el `user`, el usuario será la persona que envió este comando.
@@ -650,7 +650,7 @@ class Soporte(commands.Cog):
 
     @logs.command(name="responded")
     @checks.has_permissions(PermissionLevel.SUPPORTER)
-    async def logs_responded(self, ctx, *, Usuario: User = None):
+    async def logs_responded(self, ctx, *, user: User = None):
         """
         Obtenga todos los registros donde el usuario especificado haya respondido al menos una vez.
         Si no se proporciona el `user`, el usuario será la persona que envió este comando.
@@ -875,7 +875,7 @@ class Soporte(commands.Cog):
     @blocked.command(name="whitelist")
     @checks.has_permissions(PermissionLevel.MODERATOR)
     @trigger_typing
-    async def blocked_whitelist(self, ctx, *, Usuario: User = None):
+    async def blocked_whitelist(self, ctx, *, user: User = None):
         """
         Incluya o elimine la lista blanca de un usuario para que no sea bloqueado.
         Útil para evitar que los usuarios sean bloqueados por restricciones account_age/guild_age.
@@ -996,7 +996,7 @@ class Soporte(commands.Cog):
     @commands.command()
     @checks.has_permissions(PermissionLevel.MODERATOR)
     @trigger_typing
-    async def unblock(self, ctx, *, Usuario: User = None):
+    async def unblock(self, ctx, *, user: User = None):
         """
         Desbloquear a un usuario para que no use RequiemSupport.
         Deje `Usuario` en blanco cuando este comando se utilice dentro de un
