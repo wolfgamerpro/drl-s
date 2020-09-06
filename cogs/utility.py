@@ -225,7 +225,7 @@ class ModmailHelpCommand(commands.HelpCommand):
 
 
 class Utility(commands.Cog):
-    """General commands that provide utility."""
+    """Comandos generales que proporcionan utilidad."""
 
     def __init__(self, bot):
         self.bot = bot
