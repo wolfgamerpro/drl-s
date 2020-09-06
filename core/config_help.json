@@ -505,21 +505,21 @@
     "image": "https://i.imgur.com/SKOC42Z.png"
   },
   "modmail_guild_id": {
-    "default": "Fallback on `GUILD_ID`",
-    "description": "The ID of the discord server where the threads channels should be created (receiving server).",
+    "default": "Recurrir a `GUILD_ID`",
+    "description": "El ID del servidor de discord donde se deben crear los canales de ticket (servidor de recepción).",
     "examples": [
     ],
     "notes": [
-      "This configuration can only to be set through `.env` file or environment (config) variables."
+      "Esta configuración solo se puede establecer mediante el archivo `.env` o variables de entorno (config)."
     ]
   },
   "guild_id": {
     "default": "None, required",
-    "description": "The ID of the discord server where recipient users reside (users server).",
+    "description": "El ID del servidor de discord donde residen los usuarios destinatarios (servidor de discord).",
     "examples": [
     ],
     "notes": [
-      "This configuration can only to be set through `.env` file or environment (config) variables."
+      "Esta configuración solo se puede establecer mediante el archivo `.env` o variables de entorno (config)."
     ]
   },
   "log_url": {
