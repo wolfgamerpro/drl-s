@@ -798,7 +798,7 @@ class Modmail(commands.Cog):
     @checks.thread_only()
     async def areply(self, ctx, *, msg: str = ""):
         """
-        Reply to a thread anonymously.
+        Responder a un ticket de forma anónima.
 
         You can edit the anonymous user's name,
         avatar and tag using the config command.
