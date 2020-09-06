@@ -71,7 +71,7 @@ class ModmailHelpCommand(commands.HelpCommand):
             embed.set_author(name=name + continued, icon_url=bot.user.avatar_url)
 
             embed.set_footer(
-                text=f'Usa "{prefix}{self.command_attrs["name"]} command" '
+                text=f'Usa "{prefix}{self.command_attrs["name"]} comando" '
                 "para obtener más información sobre un comando específico."
             )
             embeds.append(embed)
@@ -150,7 +150,7 @@ class ModmailHelpCommand(commands.HelpCommand):
 
         embed.add_field(name="Sub Comando(s)", value=format_[:1024], inline=False)
         embed.set_footer(
-            text=f'Usa "{self.clean_prefix}{self.command_attrs["name"]} command" '
+            text=f'Usa "{self.clean_prefix}{self.command_attrs["name"]} comando" '
             "para obtener más información sobre un comando."
         )
 
