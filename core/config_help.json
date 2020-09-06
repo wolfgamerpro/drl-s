@@ -129,193 +129,190 @@
   },
   "reply_without_command": {
     "default": "Disabled",
-    "description": "Setting this configuration will make all non-command messages sent in the thread channel to be forwarded to the recipient without the need of `{prefix}reply`.",
+    "description": "Establecer esta configuración en `yes` hará que todos los mensajes que no sean de comando enviados en el canal del ticket se reenvíen al destinatario sin la necesidad de `{prefix}reply`.",
     "examples": [
       "`{prefix}config set reply_without_command yes`",
       "`{prefix}config set reply_without_command no`"
     ],
     "notes": [
-      "See also: `anon_reply_without_command`."
+      "Ver también: `anon_reply_without_command`."
     ]
   },
   "anon_reply_without_command": {
     "default": "Disabled",
-    "description": "Setting this configuration will make all non-command messages sent in the thread channel to be anonymously forwarded to the recipient without the need of `{prefix}reply`.",
+    "description": "Establecer esta configuración hará que todos los mensajes que no sean de comando enviados en el canal del ticket se reenvíen de forma anónima al destinatario sin la necesidad de `{prefix}reply`.",
     "examples": [
       "`{prefix}config set anon_reply_without_command yes`",
       "`{prefix}config set anon_reply_without_command no`"
     ],
     "notes": [
-      "See also: `reply_without_command`."
+      "Ver también: `reply_without_command`."
     ]
   },
   "log_channel_id": {
-    "default": "`#bot-logs` (created with `{prefix}setup`)",
-    "description": "This is the channel where all log messages will be sent (ie. thread close message, update message, etc.).\n\nTo change the log channel, you will need to find the [channel’s ID](https://support.discordapp.com/hc/en-us/articles/206346498). The channel doesn’t necessary have to be under the `main_category`.",
+    "default": "`#「📜」┆˹registro˼` (creado por `{prefix}setup`)",
+    "description": "Este es el canal donde se enviarán todos los mensajes de registro (es decir: mensaje de cierre de ticket, mensaje de actualización de ticket, etc.).\n\nPara cambiar el canal de registro, necesitará encontrar el [ID del canal](https://support.discordapp.com/hc/en-us/articles/206346498). No es necesario que el canal esté debajo del `main_category`.",
     "examples": [
-      "`{prefix}config set log_channel_id 9234932582312` (9234932582312 is the channel ID)"
+      "`{prefix}config set log_channel_id 9234932582312` (9234932582312 es la ID del canal)"
     ],
     "notes": [
-      "If the Modmail logging channel ended up being non-existent/invalid, no logs will be sent."
+      "Si el canal de registro de RequiemSupport terminó siendo inexistente/inválido, no se enviarán registros."
     ]
   },
   "sent_emoji": {
     "default": "✅",
-    "description": "This is the emoji added to the message when when a Modmail action is invoked successfully (ie. DM Modmail, edit message, etc.).",
+    "description": "Este es el emoji que se agrega al mensaje cuando se invoca con éxito una acción de RequiemSupport (es decir: DM RequiemSupport, mensajes editados, etc.).",
     "examples": [
       "`{prefix}config set sent_emoji ✨`"
     ],
     "notes": [
-      "You can disable `sent_emoji` with `{prefix}config set sent_emoji disable`.",
-      "Custom/animated emojis are also supported, however, the emoji must be added to the server.",
-      "See also: `blocked_emoji`."
+      "Puedes deshabilitar `sent_emoji` con `{prefix}config set sent_emoji disable`.",
+      "También se admiten emojis personalizados/animados, sin embargo, el emoji debe agregarse al servidor.",
+      "Ver también: `blocked_emoji`."
     ]
   },
   "blocked_emoji": {
     "default": "🚫",
-    "description": "This is the emoji added to the message when when a Modmail action is invoked unsuccessfully (ie. DM Modmail when blocked, failed to reply, etc.).",
+    "description": "Este es el emoji que se agrega al mensaje cuando se invoca una acción de RequiemSupport sin éxito (es decir: DM RequiemSupport cuando esta bloqueado, no pudo responder, etc.).",
     "examples": [
       "`{prefix}config set blocked_emoji 🙅‍`"
     ],
     "notes": [
-      "You can disable `blocked_emoji` with `{prefix}config set blocked_emoji disable`.",
-      "Custom/animated emojis are also supported, however, the emoji must be added to the server.",
-      "See also: `sent_emoji`."
+      "Puedes deshabilitar `blocked_emoji` con `{prefix}config set blocked_emoji disable`.",
+      "También se admiten emojis personalizados/animados, sin embargo, el emoji debe agregarse al servidor.",
+      "Ver también: `sent_emoji`."
     ]
   },
   "close_emoji": {
     "default": "🔒",
-    "description": "This is the emoji the recipient can click to close a thread themselves. The emoji is automatically added to the `thread_creation_response` embed.",
+    "description": "Este es el emoji en el que el destinatario puede hacer clic para cerrar un ticket. El emoji se agrega automáticamente al `thread_creation_response` embed.",
     "examples": [
       "`{prefix}config set close_emoji 👍‍`"
     ],
     "notes": [
-      "This will only have an effect when `recipient_thread_close` is enabled.",
-      "See also: `recipient_thread_close`."
+      "Esto solo tendrá efecto cuando `recipient_thread_close` esta activado.",
+      "Ver también: `recipient_thread_close`."
     ]
   },
   "recipient_thread_close": {
     "default": "Disabled",
-    "description": "Setting this configuration will allow recipients to use the `close_emoji` to close the thread themselves.",
+    "description": "Establecer esta configuración permitirá a los destinatarios utilizar la `close_emoji` para cerrar el ticket ellos mismos.",
     "examples": [
       "`{prefix}config set recipient_thread_close yes`",
       "`{prefix}config set recipient_thread_close no`"
     ],
     "notes": [
-      "The close emoji is dictated by the configuration `close_emoji`.",
-      "See also: `close_emoji`."
+      "El emoji cerrado viene dictado por la configuración `close_emoji`.",
+      "Ver también: `close_emoji`."
     ]
   },
   "thread_auto_close_silently": {
     "default": "No",
-    "description": "Setting this configuration will close silently when the thread auto-closes.",
+    "description": "Establecer esta configuración en `yes` cerrará silenciosamente cuando el ticket se cierre automáticamente.",
     "examples": [
       "`{prefix}config set thread_auto_close_silently yes`",
       "`{prefix}config set thread_auto_close_silently no`"
     ],
     "notes": [
-      "This will only have an effect when `thread_auto_close` is set.",
-      "See also: `thread_auto_close`."
+      "Esto solo tendrá efecto cuando `thread_auto_close` esta colocado.",
+      "Ver también: `thread_auto_close`."
     ]
   },
   "thread_auto_close": {
     "default": "Never",
-    "description": "Setting this configuration will close threads automatically after the number of days, hours, minutes or any time-interval specified by this configuration.",
+    "description": "Establecer esta configuración cerrará los ticket automáticamente después del número de días, horas, minutos o cualquier intervalo de tiempo especificado por esta configuración.",
     "examples": [
-      "`{prefix}config set thread_auto_close P12DT3H` (stands for 12 days and 3 hours in [ISO-8601 Duration Format](https://en.wikipedia.org/wiki/ISO_8601#Durations))",
-      "`{prefix}config set thread_auto_close 3 days and 5 hours` (accepted readable time)"
+      "`{prefix}config set thread_auto_close 3 days and 5 hours` (Tiempo de lectura aceptado)"
     ],
     "notes": [
-      "To disable auto close, do `{prefix}config del thread_auto_close`.",
-      "To prevent a thread from auto-closing, do `{prefix}close cancel`.",
-      "See also: `thread_auto_close_silently`, `thread_auto_close_response`."
+      "Para deshabilitar el cierre automático, haga `{prefix}config del thread_auto_close`.",
+      "Para evitar que un ticket se cierre automáticamente, haga `{prefix}close cancel`.",
+      "Ver también: `thread_auto_close_silently`, `thread_auto_close_response`."
     ]
   },
   "thread_cooldown": {
     "default": "Never",
-    "description": "Specify the time required for the recipient to wait before allowed to create a new thread.",
+    "description": "Especifique el tiempo necesario para que el destinatario espere antes de que se le permita crear un nuevo ticket.",
     "examples": [
-      "`{prefix}config set thread_cooldown P12DT3H` (stands for 12 days and 3 hours in [ISO-8601 Duration Format](https://en.wikipedia.org/wiki/ISO_8601#Durations))",
       "`{prefix}config set thread_cooldown 3 days and 5 hours` (accepted readable time)"
     ],
     "notes": [
-      "To disable thread cooldown, do `{prefix}config del thread_cooldown`."
+      "Para desactivar el enfriamiento del ticket, usa `{prefix}config del thread_cooldown`."
     ]
   },
   "thread_auto_close_response": {
-    "default": "\"This thread has been closed automatically due to inactivity after {{timeout}}.\"",
-    "description": "This is the message to display when the thread when the thread auto-closes.",
+    "default": "\"Este ticket se ha cerrado automáticamente debido a la inactividad después de {{timeout}}.\"",
+    "description": "Este es el mensaje que se muestra cuando el ticket se cierra automáticamente.",
     "examples": [
-      "`{prefix}config set thread_auto_close_response Your close message here.`"
+      "`{prefix}config set thread_auto_close_response Tu mensaje de cerrado aquí.`"
     ],
     "notes": [
-      "Its possible to use `{{timeout}}` as a placeholder for a formatted timeout text.",
-      "This will not have an effect when `thread_auto_close_silently` is enabled.",
-      "Discord flavoured markdown is fully supported in `thread_auto_close_response`.",
-      "See also: `thread_auto_close`, `thread_auto_close_silently`."
+      "Esto no tendrá efecto cuando `thread_auto_close_silently` este activado.",
+      "Discord markdown es totalmente compatible con `thread_auto_close_response`.",
+      "Ver también: `thread_auto_close`, `thread_auto_close_silently`."
     ]
   },
   "thread_creation_response": {
-    "default": "\"The staff team will get back to you as soon as possible.\"",
-    "description": "This is the message embed content sent to the recipient upon the creation of a new thread.",
+    "default": "\"El equipo de personal se comunicará con usted lo antes posible.\"",
+    "description": "Este es el contenido del mensaje que se envía al destinatario tras la creación de un nuevo ticket.",
     "examples": [
-      "`{prefix}config set thread_creation_response You will be contacted shortly.`"
+      "`{prefix}config set thread_creation_response Nos comunicaremos con usted en breve.`"
     ],
     "notes": [
-      "Discord flavoured markdown is fully supported in `thread_creation_response`.",
-      "See also: `thread_creation_title`, `thread_creation_footer`, `thread_close_response`."
+      "Discord markdown es totalmente compatible con `thread_creation_response`.",
+      "Ver también: `thread_creation_title`, `thread_creation_footer`, `thread_close_response`."
     ]
   },
   "thread_creation_footer": {
-    "default": "\"Your message has been sent\"",
-    "description": "This is the message embed footer sent to the recipient upon the creation of a new thread.",
+    "default": "\"Tu mensaje ha sido enviado\"",
+    "description": "Este es el pie de página del mensaje que se envía al destinatario cuando se crea un nuevo ticket.",
     "examples": [
-      "`{prefix}config set thread_creation_footer Please Hold...`"
+      "`{prefix}config set thread_creation_footer Por favor espera ...`"
     ],
     "notes": [
-      "This is used in place of `thread_self_closable_creation_footer` when `recipient_thread_close` is enabled.",
-      "See also: `thread_creation_title`, `thread_creation_response`, `thread_self_closable_creation_footer`, `thread_close_footer`."
+      "Esto se usa en lugar de `thread_self_closable_creation_footer` cuando `recipient_thread_close` esta activado.",
+      "Ver también: `thread_creation_title`, `thread_creation_response`, `thread_self_closable_creation_footer`, `thread_close_footer`."
     ]
   },
   "thread_self_closable_creation_footer": {
-    "default": "\"Click the lock to close the thread\"",
-    "description": "This is the message embed footer sent to the recipient upon the creation of a new thread.",
+    "default": "\"Haga clic en el candado para cerrar el ticket\"",
+    "description": "Este es el pie de página del mensaje que se envía al destinatario cuando se crea un nuevo ticket.",
     "examples": [
-      "`{prefix}config set thread_self_closable_creation_footer Please Hold...`"
+      "`{prefix}config set thread_self_closable_creation_footer Por favor espera ...`"
     ],
     "notes": [
-      "This is used in place of `thread_creation_footer` when `recipient_thread_close` is disabled.",
-      "See also: `thread_creation_title`, `thread_creation_response`, `thread_creation_footer`."
+      "Esto se usa en lugar de `thread_creation_footer` cuando `recipient_thread_close` esta desactivado.",
+      "Ver también: `thread_creation_title`, `thread_creation_response`, `thread_creation_footer`."
     ]
   },
   "thread_creation_title": {
-    "default": "\"Thread Created\"",
-    "description": "This is the message embed title sent to the recipient upon the creation of a new thread.",
+    "default": "\"Ticket Creado\"",
+    "description": "Este es el título del mensaje que se envía al destinatario cuando se crea un nuevo ticket.",
     "examples": [
-      "`{prefix}config set thread_creation_title Hello!`"
+      "`{prefix}config set thread_creation_title Hola!`"
     ],
     "notes": [
-      "See also: `thread_creation_response`, `thread_creation_footer`, `thread_close_title`."
+      "Ver también: `thread_creation_response`, `thread_creation_footer`, `thread_close_title`."
     ]
   },
   "thread_close_footer": {
-    "default": "\"Replying will create a new thread\"",
-    "description": "This is the message embed footer sent to the recipient upon the closure of a thread.",
+    "default": "\"Responder creará un nuevo ticket\"",
+    "description": "Este es el pie de página del mensaje que se envía al destinatario cuando se cierra un ticket.",
     "examples": [
-      "`{prefix}config set thread_close_footer Bye!`"
+      "`{prefix}config set thread_close_footer Adíos!`"
     ],
     "notes": [
-      "See also: `thread_close_title`, `thread_close_response`, `thread_creation_footer`."
+      "Ver también: `thread_close_title`, `thread_close_response`, `thread_creation_footer`."
     ]
   },
   "thread_close_title": {
-    "default": "\"Thread Closed\"",
-    "description": "This is the message embed title sent to the recipient upon the closure of a thread.",
+    "default": "\"Ticket Cerrado\"",
+    "description": "Este es el título de inserción del mensaje que se envía al destinatario tras el cierre de un ticket.",
     "examples": [
-      "`{prefix}config set thread_close_title Farewell!`"
+      "`{prefix}config set thread_close_title Adíos!`"
     ],
     "notes": [
-      "See also: `thread_close_response`, `thread_close_footer`, `thread_creation_title`."
+      "Ver también: `thread_close_response`, `thread_close_footer`, `thread_creation_title`."
     ]
   },
   "thread_close_response": {
