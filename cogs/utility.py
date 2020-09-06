@@ -58,7 +58,7 @@ class ModmailHelpCommand(commands.HelpCommand):
         embeds = []
         for format_ in formats:
             description = (
-                cog.description or "Sin descripción
+                cog.description or "Sin descripción"
                 if not no_cog
                 else "Comandos variados sin categoría."
             )
