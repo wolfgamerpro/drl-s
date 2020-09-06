@@ -67,7 +67,7 @@ class ModmailHelpCommand(commands.HelpCommand):
             embed.add_field(name="Comandos", value=format_ or "Sin comandos.")
 
             continued = " (Continuado)" if embeds else ""
-            name = cog.qualified_name + " - Ayuda" if not no_cog else "Comandos variados"
+            name = "RequiemSupport - Ayuda" if not no_cog else "Comandos variados"
             embed.set_author(name=name + continued, icon_url=bot.user.avatar_url)
 
             embed.set_footer(
