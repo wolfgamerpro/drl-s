@@ -30,7 +30,7 @@ class ConfigManager:
         "fallback_category_id": 508484613329649665,
         "prefix": "s!",
         "mention": "@here",
-        "main_color": str(discord.Color.vivid_purple()),
+        "main_color": "#a561ff",
         "error_color": str(discord.Color.red()),
         "user_typing": False,
         "mod_typing": False,
