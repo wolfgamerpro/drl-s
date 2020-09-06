@@ -370,7 +370,7 @@ class Modmail(commands.Cog):
     @checks.has_permissions(PermissionLevel.SUPPORTER)
     @checks.thread_only()
     async def notify(
-        self, ctx, *, Usuario_O_Rol: Union[discord.Role, Usuario, str.lower, None] = None
+        self, ctx, *, Usuario_O_Rol: Union[discord.Role, user, str.lower, None] = None
     ):
         """
         Notificar a un usuario o rol cuando se reciba el siguiente ticket.
