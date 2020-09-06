@@ -275,94 +275,94 @@
     ]
   },
   "thread_self_closable_creation_footer": {
-    "default": "\"Click the lock to close the thread\"",
-    "description": "This is the message embed footer sent to the recipient upon the creation of a new thread.",
+    "default": "\"Haga clic en el candado para cerrar el ticket\"",
+    "description": "Este es el pie de página del mensaje que se envía al destinatario cuando se crea un nuevo ticket.",
     "examples": [
-      "`{prefix}config set thread_self_closable_creation_footer Please Hold...`"
+      "`{prefix}config set thread_self_closable_creation_footer Por favor espera ...`"
     ],
     "notes": [
-      "This is used in place of `thread_creation_footer` when `recipient_thread_close` is disabled.",
-      "See also: `thread_creation_title`, `thread_creation_response`, `thread_creation_footer`."
+      "Esto se usa en lugar de `thread_creation_footer` cuando `recipient_thread_close` esta desactivado.",
+      "Ver también: `thread_creation_title`, `thread_creation_response`, `thread_creation_footer`."
     ]
   },
   "thread_creation_title": {
-    "default": "\"Thread Created\"",
-    "description": "This is the message embed title sent to the recipient upon the creation of a new thread.",
+    "default": "\"Ticket Creado\"",
+    "description": "Este es el título del mensaje que se envía al destinatario cuando se crea un nuevo ticket.",
     "examples": [
-      "`{prefix}config set thread_creation_title Hello!`"
+      "`{prefix}config set thread_creation_title Hola!`"
     ],
     "notes": [
-      "See also: `thread_creation_response`, `thread_creation_footer`, `thread_close_title`."
+      "Ver también: `thread_creation_response`, `thread_creation_footer`, `thread_close_title`."
     ]
   },
   "thread_close_footer": {
-    "default": "\"Replying will create a new thread\"",
-    "description": "This is the message embed footer sent to the recipient upon the closure of a thread.",
+    "default": "\"Responder creará un nuevo ticket\"",
+    "description": "Este es el pie de página del mensaje que se envía al destinatario cuando se cierra un ticket.",
     "examples": [
-      "`{prefix}config set thread_close_footer Bye!`"
+      "`{prefix}config set thread_close_footer Adíos!`"
     ],
     "notes": [
-      "See also: `thread_close_title`, `thread_close_response`, `thread_creation_footer`."
+      "Ver también: `thread_close_title`, `thread_close_response`, `thread_creation_footer`."
     ]
   },
   "thread_close_title": {
-    "default": "\"Thread Closed\"",
-    "description": "This is the message embed title sent to the recipient upon the closure of a thread.",
+    "default": "\"Ticket Cerrado\"",
+    "description": "Este es el título de inserción del mensaje que se envía al destinatario tras el cierre de un ticket.",
     "examples": [
-      "`{prefix}config set thread_close_title Farewell!`"
+      "`{prefix}config set thread_close_title Adíos!`"
     ],
     "notes": [
-      "See also: `thread_close_response`, `thread_close_footer`, `thread_creation_title`."
+      "Ver también: `thread_close_response`, `thread_close_footer`, `thread_creation_title`."
     ]
   },
   "thread_close_response": {
-    "default": "\"{{closer.mention}} has closed this Modmail thread\"",
-    "description": "This is the message embed content sent to the recipient upon the closure of a thread.",
+    "default": "\"{{closer.mention}} ha cerrado este ticket de RequiemSupport\"",
+    "description": "Este es el contenido del mensaje que se envía al destinatario al cerrar un ticket.",
     "examples": [
-      "`{prefix}config set thread_close_response Your message is appreciated!`"
+      "`{prefix}config set thread_close_response ¡Se agradece su mensaje!`"
     ],
     "notes": [
-      "When `recipient_thread_close` is enabled and the recipient closed their own thread, `thread_self_close_response` is used instead of this configuration.",
-      "You may use the `{{closer}}` variable for access to the [Member](https://discordpy.readthedocs.io/en/latest/api.html#discord.Member) that closed the thread.",
-      "`{{loglink}}` can be used as a placeholder substitute for the full URL linked to the thread in the log viewer and `{{loglink}}` for the unique key (ie. s3kf91a) of the log.",
-      "Discord flavoured markdown is fully supported in `thread_close_response`.",
-      "See also: `thread_close_title`, `thread_close_footer`, `thread_self_close_response`, `thread_creation_response`."
+      "Cuando `recipient_thread_close` está habilitado y el destinatario cerró su propio ticket, `thread_self_close_response` se utiliza en lugar de esta configuración.",
+      "Puede utilizar el `{{closer}}` variable para acceder al [miembro](https://discordpy.readthedocs.io/en/latest/api.html#discord.Member) que cerró el ticket.",
+      "`{{loglink}}` se puede utilizar como un sustituto de marcador de posición para la URL al ticket en el visor de registros y `{{loglink}}` por la clave única (ejemplo: s3kf91a) del registro.",
+      "Discord markdown es totalmente compatible con `thread_close_response`.",
+      "Ver también: `thread_close_title`, `thread_close_footer`, `thread_self_close_response`, `thread_creation_response`."
     ]
   },
   "thread_self_close_response": {
-    "default": "\"You have closed this Modmail thread.\"",
+    "default": "\"You have closed this RequiemSupport thread.\"",
     "description": "This is the message embed content sent to the recipient upon the closure of a their own thread.",
     "examples": [
-      "`{prefix}config set thread_self_close_response You have closed your own thread...`"
+      "`{prefix}config set thread_self_close_response Has cerrado tu propio ticket...`"
     ],
     "notes": [
-      "When `recipient_thread_close` is disabled or the thread wasn't closed by the recipient, `thread_close_response` is used instead of this configuration.",
-      "You may use the `{{closer}}` variable for access to the [Member](https://discordpy.readthedocs.io/en/latest/api.html#discord.Member) that closed the thread.",
-      "`{{loglink}}` can be used as a placeholder substitute for the full URL linked to the thread in the log viewer and `{{loglink}}` for the unique key (ie. s3kf91a) of the log.",
-      "Discord flavoured markdown is fully supported in `thread_self_close_response`.",
-      "See also: `thread_close_title`, `thread_close_footer`, `thread_close_response`."
+      "When `recipient_thread_close` está deshabilitado o el destinatario no cerró el ticket, `thread_close_response` se utiliza en lugar de esta configuración.",
+      "Puede utilizar el `{{closer}}` variable para acceder al [miembro](https://discordpy.readthedocs.io/en/latest/api.html#discord.Member) that closed the thread.",
+      "`{{loglink}}` se puede utilizar como un sustituto de marcador de posición para la URL al ticket en el visor de registros y `{{loglink}}` por la clave única (ejemplo: s3kf91a) del registro.",
+      "Discord markdown es totalmente compatible con `thread_self_close_response`.",
+      "Ver también: `thread_close_title`, `thread_close_footer`, `thread_close_response`."
     ]
   },
   "thread_move_notify": {
     "default": "No",
-    "description": "Notify the recipient if the thread was moved.",
+    "description": "Notifique al destinatario si se movió el ticket.",
     "examples": [
       "`{prefix}config set thread_move_notify yes`",
       "`{prefix}config set thread_move_notify no`"
     ],
     "notes": [
-      "See also: `thread_move_response`."
+      "Ver también: `thread_move_response`."
     ]
   },
   "thread_move_response": {
-    "default": "This thread has been moved.",
-    "description": "This is the message to display to the user when the thread is moved.",
+    "default": "Este ticket se ha movido.",
+    "description": "Este es el mensaje que se muestra al usuario cuando se mueve el ticket.",
     "examples": [
-      "`{prefix}config set thread_move_response This thread has been moved to another category for review!`"
+      "`{prefix}config set thread_move_response Este ticket se ha movido a otra categoría para su revisión.`"
     ],
     "notes": [
-      "Only has an effect when `thread_move_notify` is on.",
-      "See also: `thread_move_notify`."
+      "Solo tiene efecto cuando `thread_move_notify` esta activado.",
+      "Ver también: `thread_move_notify`."
     ]
   },
   "disabled_new_thread_title": {
