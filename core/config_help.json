@@ -503,7 +503,7 @@
     ],
     "image": "https://i.imgur.com/SKOC42Z.png"
   },
-  "ModMail_guild_id": {
+  "modmail_guild_id": {
     "default": "Recurrir a `GUILD_ID`",
     "description": "El ID del servidor de discord donde se deben crear los canales de ticket (servidor de recepción).",
     "examples": [
