@@ -699,83 +699,82 @@ class Modmail(commands.Cog):
     @commands.command()
     @checks.has_permissions(PermissionLevel.SUPPORTER)
     @checks.thread_only()
-    async def reply(self, ctx, *, msg: str = ""):
+    async def reply(self, ctx, *, mensaje: str = ""):
         """
-        Reply to a Modmail thread.
-        Supports attachments and images as well as
-        automatically embedding image URLs.
+        Responder a un ticket de Modmail.
+        Admite archivos adjuntos e imágenes, así como
+        embed automático a las URL de imágenes.
         """
-        ctx.message.content = msg
+        ctx.message.content = mensaje
         async with ctx.typing():
             await ctx.thread.reply(ctx.message)
 
     @commands.command(aliases=["formatreply"])
     @checks.has_permissions(PermissionLevel.SUPPORTER)
     @checks.thread_only()
-    async def freply(self, ctx, *, msg: str = ""):
+    async def freply(self, ctx, *, mensaje: str = ""):
         """
-        Reply to a Modmail thread with variables.
-        Works just like `{prefix}reply`, however with the addition of three variables:
-          - `{{channel}}` - the `discord.TextChannel` object
-          - `{{recipient}}` - the `discord.User` object of the recipient
-          - `{{author}}` - the `discord.User` object of the author
-        Supports attachments and images as well as
-        automatically embedding image URLs.
+        Responder a un ticket de RequiemSupport con variables.
+        Funciona igual que `{prefix}reply`, sin embargo con la adición de tres variables:
+          - `{{channel}}` - El objeto `discord.TextChannel`
+          - `{{recipient}}` - El objeto del destinatario `discord.User`
+          - `{{author}}` - El objeto del autor `discord.User`
+        Admite archivos adjuntos e imágenes, así como
+        embed automático a las URL de imágenes.
         """
-        msg = self.bot.formatter.format(
-            msg, channel=ctx.channel, recipient=ctx.thread.recipient, author=ctx.message.author
+        mensaje = self.bot.formatter.format(
+            mensaje, channel=ctx.channel, recipient=ctx.thread.recipient, author=ctx.message.author
         )
-        ctx.message.content = msg
+        ctx.message.content = mensaje
         async with ctx.typing():
             await ctx.thread.reply(ctx.message)
 
     @commands.command(aliases=["anonreply", "anonymousreply"])
     @checks.has_permissions(PermissionLevel.SUPPORTER)
     @checks.thread_only()
-    async def areply(self, ctx, *, msg: str = ""):
+    async def areply(self, ctx, *, mensaje: str = ""):
         """
         Responder a un ticket de forma anónima.
-        You can edit the anonymous user's name,
-        avatar and tag using the config command.
-        Edit the `anon_username`, `anon_avatar_url`
-        and `anon_tag` config variables to do so.
+        Puede editar el nombre del usuario anónimo,
+        avatar y etiqueta usando el comando config.
+        Edite `anon_username`, `anon_avatar_url` `anon_tag`.
         """
-        ctx.message.content = msg
+        ctx.message.content = mensaje
         async with ctx.typing():
             await ctx.thread.reply(ctx.message, anonymous=True)
 
     @commands.command()
     @checks.has_permissions(PermissionLevel.SUPPORTER)
     @checks.thread_only()
-    async def note(self, ctx, *, msg: str = ""):
+    async def note(self, ctx, *, mensaje: str = ""):
         """
-        Take a note about the current thread.
-        Useful for noting context.
+        Toma nota sobre el ticket actual.
+        Útil para señalar el contexto.
         """
-        ctx.message.content = msg
+        ctx.message.content = mensaje
         async with ctx.typing():
-            msg = await ctx.thread.note(ctx.message)
-            await msg.pin()
+            mensaje = await ctx.thread.note(ctx.message)
+            await mensaje.pin()
 
     @commands.command()
     @checks.has_permissions(PermissionLevel.SUPPORTER)
     @checks.thread_only()
-    async def edit(self, ctx, message_id: Optional[int] = None, *, message: str):
+    async def edit(self, ctx, mensaje_id: Optional[int] = None, *, mensaje: str):
         """
-        Edit a message that was sent using the reply or anonreply command.
-        If no `message_id` is provided,
-        the last message sent by a staff will be edited.
-        Note: attachments **cannot** be edited.
+        Edite un mensaje que se envió mediante el comando responder o respuesta anónima.
+        Si no se proporciona `mensaje_id`,
+        se editará el último mensaje enviado por un Staff.
+        Nota: los archivos adjuntos **no se pueden** editar.
         """
         thread = ctx.thread
 
         try:
-            await thread.edit_message(message_id, message)
+            await thread.edit_message(mensaje_id, mensaje)
         except ValueError:
             return await ctx.send(
                 embed=discord.Embed(
-                    title="Failed",
-                    description="Cannot find a message to edit.",
+                    title="Fallido",
+                    description="No se puede encontrar un mensaje para editar.",
                     color=self.bot.error_color,
                 )
             )
@@ -788,21 +787,21 @@ class Modmail(commands.Cog):
     async def contact(
         self,
         ctx,
-        user: Union[discord.Member, discord.User],
+        usuario: Union[discord.Member, discord.User],
         *,
-        category: discord.CategoryChannel = None,
+        categoría: discord.CategoryChannel = None,
     ):
         """
-        Create a thread with a specified member.
-        If `category` is specified, the thread
-        will be created in that specified category.
-        `category`, if specified, may be a category ID, mention, or name.
-        `user` may be a user ID, mention, or name.
+        Crea un ticket con un miembro especificado.
+        Si se especifica `categoría`, el ticket
+        se creará en esa categoría especificada.
+        Si se especifica `categoría`, puede ser la ID de la categoría o un nombre.
+        `usuario` puede ser la ID del usuario, una mención o un nombre.
         """
 
         if user.bot:
             embed = discord.Embed(
-                color=self.bot.error_color, description="Cannot start a thread with a bot."
+                color=self.bot.error_color, description="No se puede iniciar un ticket con un bot."
             )
             return await ctx.send(embed=embed)
 
@@ -810,8 +809,8 @@ class Modmail(commands.Cog):
         if exists:
             embed = discord.Embed(
                 color=self.bot.error_color,
-                description="A thread for this user already "
-                f"exists in {exists.channel.mention}.",
+                description="Un ticket para este usuario ya "
+                f"existe en {exists.channel.mention}.",
             )
             await ctx.channel.send(embed=embed)
 
@@ -821,8 +820,8 @@ class Modmail(commands.Cog):
                 logger.info("Contacting user %s when Modmail DM is disabled.", user)
 
             embed = discord.Embed(
-                title="Created Thread",
-                description=f"Thread started by {ctx.author.mention} for {user.mention}.",
+                title="Ticket Creado",
+                description=f"Ticket iniciado por {ctx.author.mention} para {usuario.mention}.",
                 color=self.bot.main_color,
             )
             await thread.wait_until_ready()
@@ -836,9 +835,9 @@ class Modmail(commands.Cog):
     @checks.has_permissions(PermissionLevel.MODERATOR)
     @trigger_typing
     async def blocked(self, ctx):
-        """Retrieve a list of blocked users."""
+        """Obtiene una lista de usuarios bloqueados."""
 
-        embeds = [discord.Embed(title="Blocked Users", color=self.bot.main_color, description="")]
+        embeds = [discord.Embed(title="Usuarios Bloqueados", color=self.bot.main_color, description="")]
 
         users = []
 
@@ -857,10 +856,10 @@ class Modmail(commands.Cog):
             embed = embeds[0]
 
             for mention, reason in users:
-                line = mention + f" - {reason or 'No Reason Provided'}\n"
+                line = mention + f" - {reason or 'No se proporcionó ninguna razón'}\n"
                 if len(embed.description) + len(line) > 2048:
                     embed = discord.Embed(
-                        title="Blocked Users (Continued)",
+                        title="Usuarios Bloqueados (Continuado)",
                         color=self.bot.main_color,
                         description=line,
                     )
@@ -868,7 +867,7 @@ class Modmail(commands.Cog):
                 else:
                     embed.description += line
         else:
-            embeds[0].description = "Currently there are no blocked users."
+            embeds[0].description = "Actualmente no hay usuarios bloqueados."
 
         session = EmbedPaginatorSession(ctx, *embeds)
         await session.run()
@@ -878,8 +877,8 @@ class Modmail(commands.Cog):
     @trigger_typing
     async def blocked_whitelist(self, ctx, *, Usuario: User = None):
         """
-        Whitelist or un-whitelist a user from getting blocked.
-        Useful for preventing users from getting blocked by account_age/guild_age restrictions.
+        Incluya o elimine la lista blanca de un usuario para que no sea bloqueado.
+        Útil para evitar que los usuarios sean bloqueados por restricciones account_age/guild_age.
         """
         if user is None:
             thread = ctx.thread
@@ -894,7 +893,7 @@ class Modmail(commands.Cog):
         if str(user.id) in self.bot.blocked_whitelisted_users:
             embed = discord.Embed(
                 title="Éxito",
-                description=f"{mention} is no longer whitelisted.",
+                description=f"{mention} ya no está en la lista blanca.",
                 color=self.bot.main_color,
             )
             self.bot.blocked_whitelisted_users.remove(str(user.id))
@@ -908,14 +907,14 @@ class Modmail(commands.Cog):
 
         await self.bot.config.update()
 
-        if msg.startswith("System Message: "):
+        if msg.startswith("Mensaje del Sistema: "):
             # If the user is blocked internally (for example: below minimum account age)
             # Show an extended message stating the original internal message
             reason = msg[16:].strip().rstrip(".")
             embed = discord.Embed(
                 title="Éxito",
-                description=f"{mention} was previously blocked internally for "
-                f'"{reason}". {mention} is now whitelisted.',
+                description=f"{mention} fue previamente bloqueado internamente por "
+                f'"{reason}". {mention} ahora está en la lista blanca.',
                 color=self.bot.main_color,
             )
         else:
@@ -927,17 +926,17 @@ class Modmail(commands.Cog):
 
         return await ctx.send(embed=embed)
 
-    @commands.command(usage="[user] [duration] [reason]")
+    @commands.command(usage="[usuario] [duración] [razón]")
     @checks.has_permissions(PermissionLevel.MODERATOR)
     @trigger_typing
-    async def block(self, ctx, user: Optional[User] = None, *, after: UserFriendlyTime = None):
+    async def block(self, ctx, usuario: Optional[User] = None, *, duración: UserFriendlyTime = None):
         """
-        Block a user from using Modmail.
-        You may choose to set a time as to when the user will automatically be unblocked.
-        Leave `user` blank when this command is used within a
-        thread channel to block the current recipient.
-        `user` may be a user ID, mention, or name.
-        `duration` may be a simple "human-readable" time text. See `{prefix}help close` for examples.
+        Bloquear a un usuario para que no use RequiemSupport.
+        Puede elegir establecer una hora en la que el usuario se desbloqueará automáticamente.
+        Deje `usuario` en blanco cuando este comando se use dentro de un
+        canal de ticket para bloquear el destinatario actual.
+        `usuario` puede ser la ID del usuario, una mención o un nombre.
+        `duración` puede ser un simple texto de tiempo. Ver tambíen `{prefix}help close` para ejemplos.
         """
 
         if user is None:
@@ -947,14 +946,14 @@ class Modmail(commands.Cog):
             elif after is None:
                 raise commands.MissingRequiredArgument(SimpleNamespace(name="user"))
             else:
-                raise commands.BadArgument(f'User "{after.arg}" not found.')
+                raise commands.BadArgument(f'Usuario "{after.arg}" no encontrado.')
 
         mention = getattr(user, "mention", f"`{user.id}`")
 
         if str(user.id) in self.bot.blocked_whitelisted_users:
             embed = discord.Embed(
                 title="Error",
-                description=f"Cannot block {mention}, user is whitelisted.",
+                description=f"No se puede bloquear a {mention}, el usuario está en la lista blanca.",
                 color=self.bot.error_color,
             )
             return await ctx.send(embed=embed)
@@ -963,7 +962,7 @@ class Modmail(commands.Cog):
 
         if after is not None:
             if "%" in reason:
-                raise commands.BadArgument('The reason contains illegal character "%".')
+                raise commands.BadArgument('La razón contiene carácter ilegal "%".')
             if after.arg:
                 reason += f" for `{after.arg}`"
             if after.dt > after.now:
@@ -979,15 +978,15 @@ class Modmail(commands.Cog):
             old_reason = msg.strip().rstrip(".")
             embed = discord.Embed(
                 title="Éxito",
-                description=f"{mention} was previously blocked {old_reason}.\n"
-                f"{mention} is now blocked {reason}",
+                description=f"{mention} fue previamente bloqueado por: {old_reason}.\n"
+                f"{mention} ahora está bloqueado por: {reason}",
                 color=self.bot.main_color,
             )
         else:
             embed = discord.Embed(
                 title="Éxito",
                 color=self.bot.main_color,
-                description=f"{mention} is now blocked {reason}",
+                description=f"{mention} ahora está bloqueado por: {reason}",
             )
         self.bot.blocked_users[str(user.id)] = reason
         await self.bot.config.update()
@@ -1089,7 +1088,7 @@ class Modmail(commands.Cog):
                 await ctx.channel.edit(topic=f"User ID: {ctx.thread.id}")
             return await self.bot.add_reaction(ctx.message, sent_emoji)
 
-        logger.info("Attempting to fix a broken thread %s.", ctx.channel.name)
+        logger.info("Intentando arreglar ticket roto %s.", ctx.channel.name)
 
         # Search cache for channel
         user_id, thread = next(
@@ -1097,7 +1096,7 @@ class Modmail(commands.Cog):
             (-1, None),
         )
         if thread is not None:
-            logger.debug("Found thread with tempered ID.")
+            logger.debug("Ticket encontrado con ID templado.")
             await ctx.channel.edit(reason="Reparar ticket de RequiemSupport roto", topic=f"ID de Usuario: {user_id}")
             return await self.bot.add_reaction(ctx.message, sent_emoji)
 
@@ -1123,7 +1122,7 @@ class Modmail(commands.Cog):
                         )
                     thread.ready = True
                     logger.info(
-                        "Setting current channel's topic to User ID and created new thread."
+                        "Establecer el tema del canal actual a el ID de usuario y crear un nuevo ticket."
                     )
                     await ctx.channel.edit(
                         reason="Reparar ticket de RequiemSupport roto", topic=f"ID de Usuario: {user_id}"
@@ -1175,7 +1174,7 @@ class Modmail(commands.Cog):
                         self.bot.threads, recipient, ctx.channel
                     )
                 thread.ready = True
-                logger.info("Setting current channel's topic to User ID and created new thread.")
+                logger.info("Estableciendo el tema del canal actual a la ID de usuario y creando un nuevo ticket.")
                 await ctx.channel.edit(
                     reason="Reparar ticket de RequiemSupport roto", name=name, topic=f"ID de Usuario: {user.id}"
                 )
