@@ -238,7 +238,7 @@ class MessagePaginatorSession(PaginatorSession):
 
     def _set_footer(self):
         if self.embed is not None:
-            footer_text = f"Page {self.current+1} of {len(self.pages)}"
+            footer_text = f"Página {self.current+1} de {len(self.pages)}"
             if self.footer_text:
                 footer_text = footer_text + " • " + self.footer_text
             self.embed.set_footer(text=footer_text, icon_url=self.embed.footer.icon_url)
