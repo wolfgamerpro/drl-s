@@ -88,7 +88,7 @@ class ModmailHelpCommand(commands.HelpCommand):
         bot = self.context.bot
 
         # always come first
-        default_cogs = [bot.get_cog("Modmail"), bot.get_cog("Utility"), bot.get_cog("Plugins")]
+        default_cogs = [bot.get_cog("Modmail"), bot.get_cog("Utility")]
 
         default_cogs.extend(c for c in cogs if c not in default_cogs)
 
