@@ -58,7 +58,7 @@ class ModmailBot(commands.Bot):
         self._api = None
         self.metadata_loop = None
         self.formatter = SafeFormatter()
-        self.loaded_cogs = ["cogs.modmail", "cogs.utility"]
+        self.loaded_cogs = ["cogs.Soporte", "cogs.Utilidades"]
         self._connected = asyncio.Event()
         self.start_time = datetime.utcnow()
 
