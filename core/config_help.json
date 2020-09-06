@@ -585,3 +585,4 @@
       "Esta configuración solo se puede establecer mediante el archivo `.env` o variables de entorno (config)."
     ]
   }
+}
