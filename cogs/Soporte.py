@@ -782,14 +782,14 @@ class Soporte(commands.Cog):
         sent_emoji, _ = await self.bot.retrieve_emoji()
         await self.bot.add_reaction(ctx.message, sent_emoji)
 
-    @commands.command()
+    @commands.command(usage="<usuario> [categoría]")
     @checks.has_permissions(PermissionLevel.SUPPORTER)
     async def contact(
         self,
         ctx,
-        usuario: Union[discord.Member, discord.User],
+        user: Union[discord.Member, discord.User],
         *,
-        categoría: discord.CategoryChannel = None,
+        category: discord.CategoryChannel = None,
     ):
         """
         Crea un ticket con un miembro especificado.
