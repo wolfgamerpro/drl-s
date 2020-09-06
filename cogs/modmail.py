@@ -1281,4 +1281,4 @@ class Modmail(commands.Cog):
 
 
 def setup(bot):
-    bot.add_cog(Modmail(bot))
+    bot.add_cog(Soporte(bot))
