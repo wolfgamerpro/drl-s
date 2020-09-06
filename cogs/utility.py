@@ -299,7 +299,7 @@ class Utility(commands.Cog):
     @checks.has_permissions(PermissionLevel.OWNER)
     @utils.trigger_typing
     async def debug(self, ctx):
-        """Shows the recent application logs of the bot."""
+        """Muestra los registros de aplicaciones recientes del bot."""
 
         log_file_name = self.bot.token.split(".")[0]
 
@@ -558,7 +558,7 @@ class Utility(commands.Cog):
     @checks.has_permissions(PermissionLevel.ADMINISTRATOR)
     @utils.trigger_typing
     async def ping(self, ctx):
-        """Pong! Returns your websocket latency."""
+        """¡Pong! Devuelve la latencia de su websocket."""
         embed = discord.Embed(
             title="¡Pong! Latencia de Websocket:",
             description=f"{self.bot.ws.latency * 1000:.4f} ms",
