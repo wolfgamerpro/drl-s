@@ -1,63 +1,63 @@
 {
   "twitch_url": {
-    "default": "`https://www.twitch.tv/discordmodmail/`",
-    "description": "This channel dictates the linked Twitch channel when the activity is set to \"Streaming\".",
+    "default": "`https://www.twitch.tv/lucasbra_98`",
+    "description": "Este canal dicta el canal de Twitch vinculado cuando la actividad se establece en \"Streaming\".",
     "examples": [
-      "`{prefix}config set twitch_url https://www.twitch.tv/yourchannelname/`"
+      "`{prefix}config set twitch_url https://www.twitch.tv/TuCanal/`"
     ],
     "notes": [
-      "This has no effect when the activity is not set to \"Streaming\".",
-      "See also: `{prefix}help activity`."
+      "Esto no tiene ningún efecto cuando la actividad no está configurada en \"Streaming\".",
+      "Ver también: `{prefix}help activity`."
     ]
   },
   "main_category_id": {
-    "default": "`Modmail` (created with `{prefix}setup`)",
-    "description": "This is the category where all new threads will be created.\n\nTo change the Modmail category, you will need to find the [category’s ID](https://support.discordapp.com/hc/en-us/articles/206346498).",
+    "default": "`RequiemSupport` (creado con `{prefix}setup`)",
+    "description": "Esta es la categoría donde se crearán todos los tickets nuevos.\n\nPara cambiar la categoría de RequiemSupport, deberá encontrar el [ID de la categoría](https://support.discordapp.com/hc/en-us/articles/206346498).",
     "examples": [
-      "`{prefix}config set main_category_id 9234932582312` (`9234932582312` is the category ID)"
+      "`{prefix}config set main_category_id 9234932582312` (`9234932582312` es el ID de categoría)"
     ],
     "notes": [
-      "If the Modmail category ended up being non-existent/invalid, Modmail will break. To fix this, run `{prefix}setup` again or set `main_category_id` to a valid category.",
-      "When the Modmail category is full, new channels will be created in the fallback category.",
-      "See also: `fallback_category_id`."
+      "Si la categoría de RequiemSupport es inexistente/inválida, RequiemSupport se romperá. Para arreglar esto, ejecute `{prefix}setup` de nuevo o establece `main_category_id` a una categoría válida.",
+      "Cuando la categoría de RequiemSupport esté llena, se crearán nuevos canales en la categoría de reserva.",
+      "Ver también: `fallback_category_id`."
     ]
   },
   "fallback_category_id": {
-    "default": "`Fallback Modmail` (created when the main category is full)",
-    "description": "This is the category that will hold the threads when the main category is full.\n\nTo change the Fallback category, you will need to find the [category’s ID](https://support.discordapp.com/hc/en-us/articles/206346498).",
+    "default": "`Fallback RequiemSupport` (creado cuando la categoría principal está llena)",
+    "description": "Esta es la categoría que contendrá los tickets cuando la categoría principal esté llena.\n\nPara cambiar la categoría de reserva, deberá encontrar la [ID de la categoría](https://support.discordapp.com/hc/en-us/articles/206346498).",
     "examples": [
-      "`{prefix}config set fallback_category_id 9234932582312` (`9234932582312` is the category ID)"
+      "`{prefix}config set fallback_category_id 9234932582312` (`9234932582312` es la ID de la categoría)"
     ],
     "notes": [
-      "If the Fallback category ended up being non-existent/invalid, Modmail will create a new one. To fix this, set `fallback_category_id` to a valid category.",
-      "See also: `main_category_id`."
+      "Si la categoría de reserva terminó siendo inexistente/inválida, RequiemSupport creará una nueva. Para solucionar esto, establezca `fallback_category_id` en una categoría válida.",
+      "Ver también: `main_category_id`."
     ]
   },
   "prefix": {
     "default": "`?`",
-    "description": "The prefix of the bot.",
+    "description": "El Prefix del bot.",
     "examples": [
       "`{prefix}prefix !`",
       "`{prefix}config set prefix !`"
     ],
     "notes": [
-      "If you forgot the bot prefix, Modmail will always respond to its mention (ping)."
+      "Si olvidó el prefijo del bot, RequiemSupport siempre responderá a su mención (ping)."
     ]
   },
   "mention": {
     "default": "@here",
-    "description": "This is the message above user information for when a new thread is created in the channel.",
+    "description": "Este es el mensaje sobre la información del usuario para cuando se crea un nuevo ticket en el canal.",
     "examples": [
       "`{prefix}config set mention Yo~ Here's a new thread for ya!`",
       "`{prefix}mention Yo~ Here's a new thread for ya!`"
     ],
     "notes": [
-      "Unfortunately, it's not currently possible to disable mention. You do not have to include a mention."
+      "Desafortunadamente, actualmente no es posible deshabilitar la mención. No es necesario incluir una mención."
     ]
   },
   "main_color": {
     "default": "Discord Blurple [#7289DA](https://placehold.it/100/7289da?text=+)",
-    "description": "This is the main color for Modmail (help/about/ping embed messages, subscribe, move, etc.).",
+    "description": "Este es el color principal de RequiemSupport (help/about/ping embed mensajes, subscribe, move, etc.).",
     "examples": [
       "`{prefix}config set main_color olive green`",
       "`{prefix}config set main_color 12de3a`",
@@ -65,14 +65,13 @@
       "`{prefix}config set main_color fff`"
     ],
     "notes": [
-      "Available color names can be found on [Taki's Blog](https://taaku18.github.io/modmail/colors/).",
-      "See also: `error_color`, `mod_color`, `recipient_color`."
+      "Ver también: `error_color`, `mod_color`, `recipient_color`."
     ],
     "thumbnail": "https://placehold.it/100/7289da?text=+"
   },
   "error_color": {
     "default": "Discord Red [#E74C3C](https://placehold.it/100/e74c3c?text=+)",
-    "description": "This is the color for Modmail when anything goes wrong, unsuccessful commands, or a stern warning.",
+    "description": "Este es el color de RequiemSupport cuando algo sale mal, comandos fallidos o una advertencia severa.",
     "examples": [
       "`{prefix}config set error_color ocean blue`",
       "`{prefix}config set error_color ff1242`",
@@ -80,55 +79,52 @@
       "`{prefix}config set error_color fa1`"
     ],
     "notes": [
-      "Available color names can be found on [Taki's Blog](https://taaku18.github.io/modmail/colors/).",
-      "See also: `main_color`, `mod_color`, `recipient_color`."
+      "Ver también: `main_color`, `mod_color`, `recipient_color`."
     ],
     "thumbnail": "https://placehold.it/100/e74c3c?text=+"
   },
   "user_typing": {
-    "default": "Disabled",
-    "description": "When this is set to `yes`, whenever the recipient user starts to type in their DM channel, the moderator will see “{bot.user.display_name} is typing…” in the thread channel.",
+    "default": "Enabled",
+    "description": "Cuando se establece en `yes`, cada vez que el usuario destinatario comienza a escribir en su canal DM, el moderador verá `{bot.user.display_name} está escribiendo ...` en el canal del ticket.",
     "examples": [
       "`{prefix}config set user_typing yes`",
       "`{prefix}config set user_typing no`"
     ],
     "notes": [
-      "See also: `mod_typing`."
+      "Ver también: `mod_typing`."
     ]
   },
   "mod_typing": {
-    "default": "Disabled",
-    "description": "When this is set to `yes`, whenever a moderator starts to type in the thread channel, the recipient user will see \"{bot.user.display_name} is typing…\" in their DM channel.",
+    "default": "Enabled",
+    "description": "Cuando se establece en `yes`, siempre que un moderador comience a escribir en el canal del ticket, el usuario destinatario verá `{bot.user.display_name} está escribiendo…` en su canal DM.",
     "examples": [
       "`{prefix}config set mod_typing yes`",
       "`{prefix}config set mod_typing no`"
     ],
     "notes": [
-      "See also: `mod_typing`."
+      "Ver también: `mod_typing`."
     ]
   },
   "account_age": {
-    "default": "No age threshold",
-    "description": "The creation date of the recipient user account must be greater than the number of days, hours, minutes or any time-interval specified by this configuration.",
+    "default": "Sin umbral de edad",
+    "description": "La fecha de creación de la cuenta de usuario del destinatario debe ser mayor que el número de días, horas, minutos o cualquier intervalo de tiempo especificado por esta configuración.",
     "examples": [
-      "`{prefix}config set account_age P12DT3H` (stands for 12 days and 3 hours in [ISO-8601 Duration Format](https://en.wikipedia.org/wiki/ISO_8601#Durations))",
-      "`{prefix}config set account_age 3 days and 5 hours` (accepted readable time)"
+      "`{prefix}config set account_age 3 days and 5 hours` (Tiempo de lectura aceptado)"
     ],
     "notes": [
-      "To remove this restriction, do `{prefix}config del account_age`.",
-      "See also: `guild_age`."
+      "Para eliminar esta restricción, haga `{prefix}config del account_age`.",
+      "Ver también: `guild_age`."
     ]
   },
   "guild_age": {
-    "default": "No age threshold",
-    "description": "The join date of the recipient user into this server must be greater than the number of days, hours, minutes or any time-interval specified by this configuration.",
+    "default": "Sin umbral de edad",
+    "description": "La fecha de incorporación del usuario destinatario a este servidor debe ser mayor que el número de días, horas, minutos o cualquier intervalo de tiempo especificado por esta configuración.",
     "examples": [
-      "`{prefix}config set guild_age P12DT3H` (stands for 12 days and 3 hours in [ISO-8601 Duration Format](https://en.wikipedia.org/wiki/ISO_8601#Durations))",
       "`{prefix}config set guild_age 3 days and 5 hours` (accepted readable time)"
     ],
     "notes": [
-      "To remove this restriction, do `{prefix}config del guild_age`.",
-      "See also: `account_age`."
+      "Para eliminar esta restricción, haga `{prefix}config del guild_age`.",
+      "Ver también: `account_age`."
     ]
   },
   "reply_without_command": {
