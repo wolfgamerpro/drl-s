@@ -67,7 +67,7 @@ class ModmailHelpCommand(commands.HelpCommand):
             embed.add_field(name="Comandos", value=format_ or "Sin comandos.")
 
             continued = " (Continuado)" if embeds else ""
-            name = "RequiemSupport - Ayuda" if not no_cog else "Comandos variados"
+            name = "RequiemSupport ("+cog.qualified_name + ") - Ayuda" if not no_cog else "Comandos variados"
             embed.set_author(name=name + continued, icon_url=bot.user.avatar_url)
 
             embed.set_footer(
@@ -88,7 +88,7 @@ class ModmailHelpCommand(commands.HelpCommand):
         bot = self.context.bot
 
         # always come first
-        default_cogs = [bot.get_cog("Modmail"), bot.get_cog("Utility")]
+        default_cogs = [bot.get_cog("Soporte"), bot.get_cog("Utilidades")]
 
         default_cogs.extend(c for c in cogs if c not in default_cogs)
 
@@ -1684,4 +1684,4 @@ class Utility(commands.Cog):
 
 
 def setup(bot):
-    bot.add_cog(Utility(bot))
+    bot.add_cog(Utilidades(bot))
