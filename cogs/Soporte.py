@@ -929,7 +929,7 @@ class Soporte(commands.Cog):
     @commands.command(usage="[usuario] [duración] [razón]")
     @checks.has_permissions(PermissionLevel.MODERATOR)
     @trigger_typing
-    async def block(self, ctx, usuario: Optional[User] = None, *, duración: UserFriendlyTime = None):
+    async def block(self, ctx, user: Optional[User] = None, *, duración: UserFriendlyTime = None):
         """
         Bloquear a un usuario para que no use RequiemSupport.
         Puede elegir establecer una hora en la que el usuario se desbloqueará automáticamente.
