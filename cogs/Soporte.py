@@ -701,7 +701,7 @@ class Soporte(commands.Cog):
     @checks.thread_only()
     async def reply(self, ctx, *, mensaje: str = ""):
         """
-        Responder a un ticket de Modmail.
+        Responder a un ticket de RequiemSupport.
         Admite archivos adjuntos e imágenes, así como
         embed automático a las URL de imágenes.
         """
